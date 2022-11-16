@@ -1,0 +1,14 @@
+syntax = "proto3";
+package smartdev0328.bluechip.pageinflation;
+
+import "gogoproto/gogo.proto";
+import "pageinflation/params.proto";
+// this line is used by starport scaffolding # genesis/proto/import
+
+option go_package = "github.com/smartdev0328/bluechip/x/pageinflation/types";
+
+// GenesisState defines the pageinflation module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+  // this line is used by starport scaffolding # genesis/proto/state
+}
