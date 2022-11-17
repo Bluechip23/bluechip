@@ -1,4 +1,4 @@
-CW20-Base: A reference implementation for fungible token on CosmWasm
+CW3: A CosmWasm spec for on-chain multiSig/voting contracts
 Copyright (C) 2020 Confio OÜ
 
 Licensed under the Apache License, Version 2.0 (the "License");
