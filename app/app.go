@@ -109,6 +109,10 @@ import (
 	icatypes "github.com/cosmos/ibc-go/v3/modules/apps/27-interchain-accounts/types"
 
 	encparams "github.com/smartdev0328/bluechip/app/params"
+
+	pageinflationmodule "github.com/smartdev0328/bluechip/x/pageinflation"
+	pageinflationmodulekeeper "github.com/smartdev0328/bluechip/x/pageinflation/keeper"
+	pageinflationmoduletypes "github.com/smartdev0328/bluechip/x/pageinflation/types"
 )
 
 const (
@@ -223,19 +227,21 @@ var (
 		authzmodule.AppModuleBasic{},
 		wasm.AppModuleBasic{},
 		ica.AppModuleBasic{},
+		pageinflationmodule.AppModuleBasic{},
 	)
 
 	// module account permissions
 	maccPerms = map[string][]string{
-		authtypes.FeeCollectorName:     nil,
-		distrtypes.ModuleName:          nil,
-		minttypes.ModuleName:           {authtypes.Minter},
-		stakingtypes.BondedPoolName:    {authtypes.Burner, authtypes.Staking},
-		stakingtypes.NotBondedPoolName: {authtypes.Burner, authtypes.Staking},
-		govtypes.ModuleName:            {authtypes.Burner},
-		ibctransfertypes.ModuleName:    {authtypes.Minter, authtypes.Burner},
-		icatypes.ModuleName:            nil,
-		wasm.ModuleName:                {authtypes.Burner},
+		authtypes.FeeCollectorName:          nil,
+		distrtypes.ModuleName:               nil,
+		minttypes.ModuleName:                {authtypes.Minter},
+		stakingtypes.BondedPoolName:         {authtypes.Burner, authtypes.Staking},
+		stakingtypes.NotBondedPoolName:      {authtypes.Burner, authtypes.Staking},
+		govtypes.ModuleName:                 {authtypes.Burner},
+		ibctransfertypes.ModuleName:         {authtypes.Minter, authtypes.Burner},
+		icatypes.ModuleName:                 nil,
+		wasm.ModuleName:                     {authtypes.Burner},
+		pageinflationmoduletypes.ModuleName: {authtypes.Minter, authtypes.Burner, authtypes.Staking},
 	}
 )
 
@@ -290,6 +296,8 @@ type App struct {
 	wasmKeeper       wasm.Keeper
 	scopedWasmKeeper capabilitykeeper.ScopedKeeper
 
+	pageinflationKeeper pageinflationmodulekeeper.Keeper
+
 	// the module manager
 	mm *module.Manager
 	sm *module.SimulationManager
@@ -326,6 +334,7 @@ func New(
 		evidencetypes.StoreKey, ibctransfertypes.StoreKey, capabilitytypes.StoreKey,
 		authzkeeper.StoreKey, feegrant.StoreKey, icahosttypes.StoreKey,
 		wasm.StoreKey,
+		pageinflationmoduletypes.StoreKey,
 	)
 	tkeys := sdk.NewTransientStoreKeys(paramstypes.TStoreKey)
 	memKeys := sdk.NewMemoryStoreKeys(capabilitytypes.MemStoreKey)
@@ -476,6 +485,16 @@ func New(
 		wasmOpts...,
 	)
 
+	app.pageinflationKeeper = *pageinflationmodulekeeper.NewKeeper(
+		appCodec,
+		keys[pageinflationmoduletypes.StoreKey],
+		keys[pageinflationmoduletypes.MemStoreKey],
+		app.GetSubspace(pageinflationmoduletypes.ModuleName),
+
+		app.BankKeeper,
+	)
+	pageinflationModule := pageinflationmodule.NewAppModule(appCodec, app.pageinflationKeeper, app.AccountKeeper, app.BankKeeper)
+
 	ibcRouter := porttypes.NewRouter()
 
 	// register wasm gov proposal types
@@ -529,6 +548,7 @@ func New(
 		icaModule,
 		// this line is used by starport scaffolding # stargate/app/appModule
 		wasm.NewAppModule(appCodec, &app.wasmKeeper, app.StakingKeeper, app.AccountKeeper, app.BankKeeper),
+		pageinflationModule,
 	)
 
 	// During begin block slashing happens after distr.BeginBlocker so that
@@ -557,6 +577,7 @@ func New(
 		ibctransfertypes.ModuleName,
 		icatypes.ModuleName,
 		wasm.ModuleName,
+		pageinflationmoduletypes.ModuleName,
 	)
 
 	app.mm.SetOrderEndBlockers(
@@ -581,6 +602,7 @@ func New(
 		ibctransfertypes.ModuleName,
 		icatypes.ModuleName,
 		wasm.ModuleName,
+		pageinflationmoduletypes.ModuleName,
 	)
 
 	// NOTE: The genutils module must occur after staking so that pools are
@@ -610,6 +632,7 @@ func New(
 		ibctransfertypes.ModuleName,
 		icatypes.ModuleName,
 		wasm.ModuleName,
+		pageinflationmoduletypes.ModuleName,
 	)
 
 	app.mm.RegisterInvariants(&app.CrisisKeeper)
@@ -711,6 +734,7 @@ func New(
 		wasm.NewAppModule(appCodec, &app.wasmKeeper, app.StakingKeeper, app.AccountKeeper, app.BankKeeper),
 		ibc.NewAppModule(app.IBCKeeper),
 		transferModule,
+		pageinflationModule,
 	)
 
 	app.sm.RegisterStoreDecoders()
@@ -872,7 +896,7 @@ func initParamsKeeper(appCodec codec.BinaryCodec, legacyAmino *codec.LegacyAmino
 	paramsKeeper.Subspace(ibchost.ModuleName)
 	paramsKeeper.Subspace(icahosttypes.SubModuleName)
 	paramsKeeper.Subspace(wasm.ModuleName)
-
+	paramsKeeper.Subspace(pageinflationmoduletypes.ModuleName)
 	return paramsKeeper
 }
 
