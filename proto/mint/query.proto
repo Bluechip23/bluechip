@@ -3,7 +3,7 @@ package bluechip.mint;
 
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
-import "bluechip/mint/mint.proto";
+import "mint/mint.proto";
 
 option go_package = "github.com/smartdev0328/bluechip/x/mint/types";
 
