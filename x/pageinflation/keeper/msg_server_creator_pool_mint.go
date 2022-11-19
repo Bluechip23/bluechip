@@ -10,6 +10,7 @@ import (
 func (k msgServer) CreatorPoolMint(goCtx context.Context, msg *types.MsgCreatorPoolMint) (*types.MsgCreatorPoolMintResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
+	mintedCoin := sdk.NewCoin()
 	// TODO: Handling the message
 	_ = ctx
 
