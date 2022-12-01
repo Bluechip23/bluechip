@@ -30,12 +30,12 @@ bluechipd init --chain-id=bluechip_1 validator1
 #bluechipd keys add validator1
 #echo "claim either tribe mercy genre drastic stamp spring attend ready believe material hedgehog space remind valley give slight cram arm release universe hybrid abuse" | bluechipd keys add validator1 --keyring-backend os --recover
 
-bluechipd add-genesis-account $(bluechipd keys show validator1 -a --keyring-backend os) 50000000ubluechip 
+bluechipd add-genesis-account $(bluechipd keys show validator1 -a --keyring-backend os) 10000000000000ubluechip 
 
 #bluechipd keys add account2
 #echo "require resist steak energy armed prison embody abuse huge submit host subway merit kiwi inherit distance cliff suffer general program connect link employ crew" | bluechipd keys add account1 --keyring-backend os --recover
 
-bluechipd add-genesis-account $(bluechipd keys show account1 -a --keyring-backend os) 29999950000000ubluechip
+bluechipd add-genesis-account $(bluechipd keys show account1 -a --keyring-backend os) 20000000000000ubluechip
 
 bluechipd gentx validator1 50000000ubluechip --keyring-backend os --chain-id bluechip_1
 
