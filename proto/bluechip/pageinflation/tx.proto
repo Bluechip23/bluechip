@@ -1,5 +1,5 @@
 syntax = "proto3";
-package smartdev0328.bluechip.pageinflation;
+package bluechip.pageinflation;
 
 // this line is used by starport scaffolding # proto/tx/import
 
