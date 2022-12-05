@@ -4,6 +4,6 @@ package smartdev0328.bluechip.pageinflation;
 option go_package = "github.com/smartdev0328/bluechip/x/pageinflation/types";
 
 message MintedPool {
-  uint64 value = 1; 
+  string value = 1; 
   
 }
