@@ -1,8 +1,8 @@
 syntax = "proto3";
-package bluechip.pageinflation;
+package pageinflation;
 
 import "gogoproto/gogo.proto";
-import "bluechip/pageinflation/params.proto";
+import "pageinflation/params.proto";
 // this line is used by starport scaffolding # genesis/proto/import
 
 option go_package = "github.com/smartdev0328/bluechip/x/pageinflation/types";
