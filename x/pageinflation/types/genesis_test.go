@@ -25,6 +25,12 @@ func TestGenesisState_Validate(t *testing.T) {
 				MintDenom: &types.MintDenom{
 					Value: "1",
 				},
+				StartBlock: &types.StartBlock{
+					Value: "13",
+				},
+				MintedPool: &types.MintedPool{
+					Value: "32",
+				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,

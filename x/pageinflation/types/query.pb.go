@@ -193,43 +193,215 @@ func (m *QueryGetMintDenomResponse) GetMintDenom() MintDenom {
 	return MintDenom{}
 }
 
+type QueryGetStartBlockRequest struct {
+}
+
+func (m *QueryGetStartBlockRequest) Reset()         { *m = QueryGetStartBlockRequest{} }
+func (m *QueryGetStartBlockRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetStartBlockRequest) ProtoMessage()    {}
+func (*QueryGetStartBlockRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f9d409b4ff2e9334, []int{4}
+}
+func (m *QueryGetStartBlockRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetStartBlockRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetStartBlockRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetStartBlockRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetStartBlockRequest.Merge(m, src)
+}
+func (m *QueryGetStartBlockRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetStartBlockRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetStartBlockRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetStartBlockRequest proto.InternalMessageInfo
+
+type QueryGetStartBlockResponse struct {
+	StartBlock StartBlock `protobuf:"bytes,1,opt,name=StartBlock,proto3" json:"StartBlock"`
+}
+
+func (m *QueryGetStartBlockResponse) Reset()         { *m = QueryGetStartBlockResponse{} }
+func (m *QueryGetStartBlockResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetStartBlockResponse) ProtoMessage()    {}
+func (*QueryGetStartBlockResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f9d409b4ff2e9334, []int{5}
+}
+func (m *QueryGetStartBlockResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetStartBlockResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetStartBlockResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetStartBlockResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetStartBlockResponse.Merge(m, src)
+}
+func (m *QueryGetStartBlockResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetStartBlockResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetStartBlockResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetStartBlockResponse proto.InternalMessageInfo
+
+func (m *QueryGetStartBlockResponse) GetStartBlock() StartBlock {
+	if m != nil {
+		return m.StartBlock
+	}
+	return StartBlock{}
+}
+
+type QueryGetMintedPoolRequest struct {
+}
+
+func (m *QueryGetMintedPoolRequest) Reset()         { *m = QueryGetMintedPoolRequest{} }
+func (m *QueryGetMintedPoolRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetMintedPoolRequest) ProtoMessage()    {}
+func (*QueryGetMintedPoolRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f9d409b4ff2e9334, []int{6}
+}
+func (m *QueryGetMintedPoolRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetMintedPoolRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetMintedPoolRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetMintedPoolRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetMintedPoolRequest.Merge(m, src)
+}
+func (m *QueryGetMintedPoolRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetMintedPoolRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetMintedPoolRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetMintedPoolRequest proto.InternalMessageInfo
+
+type QueryGetMintedPoolResponse struct {
+	MintedPool MintedPool `protobuf:"bytes,1,opt,name=MintedPool,proto3" json:"MintedPool"`
+}
+
+func (m *QueryGetMintedPoolResponse) Reset()         { *m = QueryGetMintedPoolResponse{} }
+func (m *QueryGetMintedPoolResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetMintedPoolResponse) ProtoMessage()    {}
+func (*QueryGetMintedPoolResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f9d409b4ff2e9334, []int{7}
+}
+func (m *QueryGetMintedPoolResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetMintedPoolResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetMintedPoolResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetMintedPoolResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetMintedPoolResponse.Merge(m, src)
+}
+func (m *QueryGetMintedPoolResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetMintedPoolResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetMintedPoolResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetMintedPoolResponse proto.InternalMessageInfo
+
+func (m *QueryGetMintedPoolResponse) GetMintedPool() MintedPool {
+	if m != nil {
+		return m.MintedPool
+	}
+	return MintedPool{}
+}
+
 func init() {
 	proto.RegisterType((*QueryParamsRequest)(nil), "smartdev0328.bluechip.pageinflation.QueryParamsRequest")
 	proto.RegisterType((*QueryParamsResponse)(nil), "smartdev0328.bluechip.pageinflation.QueryParamsResponse")
 	proto.RegisterType((*QueryGetMintDenomRequest)(nil), "smartdev0328.bluechip.pageinflation.QueryGetMintDenomRequest")
 	proto.RegisterType((*QueryGetMintDenomResponse)(nil), "smartdev0328.bluechip.pageinflation.QueryGetMintDenomResponse")
+	proto.RegisterType((*QueryGetStartBlockRequest)(nil), "smartdev0328.bluechip.pageinflation.QueryGetStartBlockRequest")
+	proto.RegisterType((*QueryGetStartBlockResponse)(nil), "smartdev0328.bluechip.pageinflation.QueryGetStartBlockResponse")
+	proto.RegisterType((*QueryGetMintedPoolRequest)(nil), "smartdev0328.bluechip.pageinflation.QueryGetMintedPoolRequest")
+	proto.RegisterType((*QueryGetMintedPoolResponse)(nil), "smartdev0328.bluechip.pageinflation.QueryGetMintedPoolResponse")
 }
 
 func init() { proto.RegisterFile("pageinflation/query.proto", fileDescriptor_f9d409b4ff2e9334) }
 
 var fileDescriptor_f9d409b4ff2e9334 = []byte{
-	// 405 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x92, 0xcd, 0x4a, 0xeb, 0x40,
-	0x1c, 0xc5, 0x93, 0xfb, 0x51, 0xb8, 0x73, 0x77, 0x73, 0xbb, 0x68, 0xc3, 0x25, 0xf7, 0x12, 0x37,
-	0x62, 0x31, 0x63, 0x5b, 0xb0, 0xdd, 0xe8, 0xa2, 0x08, 0xe2, 0x42, 0xa8, 0x5d, 0xba, 0xd1, 0x49,
-	0x3b, 0xa6, 0x03, 0xcd, 0xcc, 0x34, 0x33, 0x29, 0x76, 0x27, 0x3e, 0x81, 0xe0, 0x8b, 0xf8, 0x0e,
-	0x6e, 0xba, 0x2c, 0xb8, 0x71, 0x25, 0xd2, 0xfa, 0x20, 0xd2, 0x49, 0xfa, 0x11, 0xad, 0x10, 0xdd,
-	0x85, 0xf9, 0xff, 0xcf, 0xef, 0x9c, 0x33, 0x19, 0x50, 0x14, 0xd8, 0x27, 0x94, 0x5d, 0xf4, 0xb0,
-	0xa2, 0x9c, 0xa1, 0x7e, 0x44, 0xc2, 0xa1, 0x2b, 0x42, 0xae, 0x38, 0xdc, 0x90, 0x01, 0x0e, 0x55,
-	0x87, 0x0c, 0x76, 0xaa, 0x95, 0xba, 0xeb, 0xf5, 0x22, 0xd2, 0xee, 0x52, 0xe1, 0xa6, 0x04, 0x56,
-	0xde, 0xe7, 0x3e, 0xd7, 0xfb, 0x68, 0xf6, 0x15, 0x4b, 0xad, 0xbf, 0x3e, 0xe7, 0x7e, 0x8f, 0x20,
-	0x2c, 0x28, 0xc2, 0x8c, 0x71, 0xa5, 0x97, 0x65, 0x32, 0xdd, 0x6a, 0x73, 0x19, 0x70, 0x89, 0x3c,
-	0x2c, 0x49, 0xec, 0x88, 0x06, 0x65, 0x8f, 0x28, 0x5c, 0x46, 0x02, 0xfb, 0x94, 0xe9, 0xe5, 0x64,
-	0xd7, 0x4a, 0xe7, 0x13, 0x38, 0xc4, 0xc1, 0x9c, 0x63, 0xa7, 0x67, 0x01, 0x65, 0xea, 0xac, 0x43,
-	0x18, 0x0f, 0xe2, 0xb9, 0x93, 0x07, 0xf0, 0x64, 0x46, 0x6f, 0x6a, 0x51, 0x8b, 0xf4, 0x23, 0x22,
-	0x95, 0x73, 0x0e, 0xfe, 0xa4, 0x4e, 0xa5, 0xe0, 0x4c, 0x12, 0x78, 0x04, 0x72, 0x31, 0xbc, 0x60,
-	0xfe, 0x37, 0x37, 0x7f, 0x57, 0x4a, 0x6e, 0x86, 0xfa, 0x6e, 0x0c, 0x69, 0xfc, 0x18, 0x3d, 0xfd,
-	0x33, 0x5a, 0x09, 0xc0, 0xb1, 0x40, 0x41, 0x3b, 0x1c, 0x12, 0x75, 0x4c, 0x99, 0x3a, 0x98, 0x45,
-	0x9a, 0xbb, 0x73, 0x50, 0x5c, 0x33, 0x4b, 0x32, 0xb4, 0xc0, 0xaf, 0xc5, 0x61, 0x12, 0xc3, 0xcd,
-	0x14, 0x63, 0xa1, 0x4a, 0x92, 0x2c, 0x31, 0x95, 0xab, 0xef, 0xe0, 0xa7, 0x76, 0x84, 0x77, 0x26,
-	0xc8, 0xc5, 0x79, 0x61, 0x2d, 0x13, 0xf5, 0xfd, 0xe5, 0x59, 0xf5, 0xcf, 0x0b, 0xe3, 0x6e, 0x4e,
-	0xf5, 0xfa, 0xe1, 0xe5, 0xf6, 0xdb, 0x36, 0x2c, 0xa1, 0x55, 0x02, 0x9a, 0x13, 0xd0, 0xba, 0xff,
-	0x0c, 0xef, 0xcd, 0x95, 0x1b, 0x81, 0x7b, 0xd9, 0xcd, 0xd7, 0x5c, 0xbd, 0xb5, 0xff, 0x55, 0x79,
-	0xd2, 0xa0, 0xa6, 0x1b, 0x94, 0x21, 0xca, 0xd4, 0x60, 0xf9, 0x1a, 0x1b, 0xcd, 0xd1, 0xc4, 0x36,
-	0xc7, 0x13, 0xdb, 0x7c, 0x9e, 0xd8, 0xe6, 0xcd, 0xd4, 0x36, 0xc6, 0x53, 0xdb, 0x78, 0x9c, 0xda,
-	0xc6, 0xe9, 0xae, 0x4f, 0x55, 0x37, 0xf2, 0xdc, 0x36, 0x0f, 0x3e, 0x80, 0x5e, 0xbe, 0xc1, 0xaa,
-	0xa1, 0x20, 0xd2, 0xcb, 0xe9, 0x07, 0x5e, 0x7d, 0x0d, 0x00, 0x00, 0xff, 0xff, 0x07, 0x00, 0xd6,
-	0x02, 0xbe, 0x03, 0x00, 0x00,
+	// 533 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x94, 0x4f, 0x6f, 0xd3, 0x30,
+	0x18, 0xc6, 0x1b, 0x04, 0x95, 0x30, 0x37, 0xb3, 0xc3, 0x16, 0x50, 0x86, 0xca, 0x05, 0x31, 0x11,
+	0xaf, 0xad, 0xc4, 0x7a, 0x01, 0xa4, 0x0a, 0x09, 0x71, 0x98, 0x54, 0x8a, 0xb8, 0x70, 0x29, 0x4e,
+	0x6b, 0xb2, 0x88, 0xc4, 0xaf, 0x17, 0xbb, 0x13, 0xbb, 0xf2, 0x09, 0x90, 0xe0, 0x83, 0xf0, 0x1d,
+	0x38, 0xb0, 0xe3, 0x24, 0x2e, 0x9c, 0x10, 0x6a, 0xf9, 0x20, 0x28, 0x8e, 0x33, 0x27, 0x34, 0x93,
+	0x92, 0xdd, 0xa2, 0xf7, 0xcf, 0xf3, 0xfe, 0x1e, 0xe7, 0xb5, 0xd1, 0x8e, 0xa0, 0x21, 0x8b, 0xf8,
+	0xfb, 0x98, 0xaa, 0x08, 0x38, 0x39, 0x5e, 0xb2, 0xf4, 0xd4, 0x17, 0x29, 0x28, 0xc0, 0xf7, 0x65,
+	0x42, 0x53, 0xb5, 0x60, 0x27, 0xfb, 0xc3, 0xc1, 0xc8, 0x0f, 0xe2, 0x25, 0x9b, 0x1f, 0x45, 0xc2,
+	0xaf, 0x34, 0xb8, 0x5b, 0x21, 0x84, 0xa0, 0xeb, 0x49, 0xf6, 0x95, 0xb7, 0xba, 0x77, 0x43, 0x80,
+	0x30, 0x66, 0x84, 0x8a, 0x88, 0x50, 0xce, 0x41, 0xe9, 0x62, 0x69, 0xb2, 0x0f, 0xe7, 0x20, 0x13,
+	0x90, 0x24, 0xa0, 0x92, 0xe5, 0x13, 0xc9, 0x49, 0x3f, 0x60, 0x8a, 0xf6, 0x89, 0xa0, 0x61, 0xc4,
+	0x75, 0xb1, 0xa9, 0x75, 0xab, 0x7c, 0x82, 0xa6, 0x34, 0x29, 0x74, 0xbc, 0x6a, 0x2e, 0x89, 0xb8,
+	0x9a, 0x2d, 0x18, 0x87, 0xc4, 0xe4, 0x77, 0xab, 0x79, 0xa9, 0x68, 0xaa, 0x66, 0x41, 0x0c, 0xf3,
+	0x0f, 0xf5, 0x05, 0x99, 0x00, 0x5b, 0xcc, 0x04, 0x40, 0x9c, 0x17, 0xf4, 0xb6, 0x10, 0x7e, 0x95,
+	0xf1, 0x4d, 0xf4, 0xd8, 0x29, 0x3b, 0x5e, 0x32, 0xa9, 0x7a, 0xef, 0xd0, 0xed, 0x4a, 0x54, 0x0a,
+	0xe0, 0x92, 0xe1, 0x97, 0xa8, 0x9b, 0xe3, 0x6d, 0x3b, 0xf7, 0x9c, 0x07, 0xb7, 0x06, 0x7b, 0x7e,
+	0x83, 0x03, 0xf4, 0x73, 0x91, 0xf1, 0xf5, 0xb3, 0xdf, 0xbb, 0x9d, 0xa9, 0x11, 0xe8, 0xb9, 0x68,
+	0x5b, 0x4f, 0x78, 0xc1, 0xd4, 0x61, 0xc4, 0xd5, 0xf3, 0xcc, 0x54, 0x31, 0x1d, 0xd0, 0x4e, 0x4d,
+	0xce, 0x30, 0x4c, 0xd1, 0xcd, 0x8b, 0xa0, 0xc1, 0xf0, 0x1b, 0x61, 0x5c, 0x74, 0x19, 0x12, 0x2b,
+	0xd3, 0xbb, 0x63, 0x07, 0xbe, 0xce, 0x8e, 0x70, 0x9c, 0x9d, 0x60, 0x41, 0x23, 0x91, 0x5b, 0x97,
+	0x34, 0x38, 0x6f, 0x10, 0xb2, 0x51, 0xc3, 0x43, 0x1a, 0xf1, 0xd8, 0x36, 0x03, 0x54, 0x12, 0x2a,
+	0x13, 0x1d, 0xea, 0x7f, 0x36, 0x01, 0x88, 0x6b, 0x88, 0xca, 0x49, 0x4b, 0x64, 0xa3, 0xad, 0x88,
+	0x6c, 0x5b, 0x41, 0x64, 0x23, 0x83, 0xaf, 0x5d, 0x74, 0x43, 0x4f, 0xc5, 0xdf, 0x1c, 0xd4, 0xcd,
+	0xff, 0x29, 0x3e, 0x68, 0xa4, 0xbb, 0xb9, 0x60, 0xee, 0xa8, 0x7d, 0x63, 0x6e, 0xaf, 0x37, 0xfc,
+	0xf4, 0xf3, 0xef, 0x97, 0x6b, 0x8f, 0xf0, 0x1e, 0x29, 0x2b, 0x90, 0x42, 0x81, 0xd4, 0xdd, 0x26,
+	0xfc, 0xdd, 0x29, 0x6d, 0x0d, 0x7e, 0xd2, 0x7c, 0x78, 0xcd, 0x7a, 0xba, 0x4f, 0xaf, 0xda, 0x6e,
+	0x1c, 0x1c, 0x68, 0x07, 0x7d, 0x4c, 0x1a, 0x39, 0xb0, 0x77, 0x1e, 0xff, 0x70, 0xca, 0xcb, 0x86,
+	0xdb, 0x71, 0x6c, 0x2c, 0xb6, 0xfb, 0xec, 0xca, 0xfd, 0xc6, 0xc8, 0x48, 0x1b, 0x19, 0xe0, 0xfd,
+	0x46, 0x46, 0x4a, 0x8f, 0x93, 0x76, 0x62, 0x77, 0x0b, 0xb7, 0x3f, 0xd1, 0xca, 0x85, 0x68, 0xe9,
+	0x64, 0xf3, 0xce, 0xb4, 0x74, 0x52, 0x7a, 0x45, 0xc7, 0x93, 0xb3, 0x95, 0xe7, 0x9c, 0xaf, 0x3c,
+	0xe7, 0xcf, 0xca, 0x73, 0x3e, 0xaf, 0xbd, 0xce, 0xf9, 0xda, 0xeb, 0xfc, 0x5a, 0x7b, 0x9d, 0xb7,
+	0x8f, 0xc3, 0x48, 0x1d, 0x2d, 0x03, 0x7f, 0x0e, 0xc9, 0x25, 0xaa, 0x1f, 0xff, 0xd3, 0x55, 0xa7,
+	0x82, 0xc9, 0xa0, 0xab, 0x1f, 0xe6, 0xe1, 0xbf, 0x00, 0x00, 0x00, 0xff, 0xff, 0x20, 0x0a, 0x39,
+	0x92, 0xb8, 0x06, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -248,6 +420,10 @@ type QueryClient interface {
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
 	// Queries a MintDenom by index.
 	MintDenom(ctx context.Context, in *QueryGetMintDenomRequest, opts ...grpc.CallOption) (*QueryGetMintDenomResponse, error)
+	// Queries a StartBlock by index.
+	StartBlock(ctx context.Context, in *QueryGetStartBlockRequest, opts ...grpc.CallOption) (*QueryGetStartBlockResponse, error)
+	// Queries a MintedPool by index.
+	MintedPool(ctx context.Context, in *QueryGetMintedPoolRequest, opts ...grpc.CallOption) (*QueryGetMintedPoolResponse, error)
 }
 
 type queryClient struct {
@@ -276,12 +452,34 @@ func (c *queryClient) MintDenom(ctx context.Context, in *QueryGetMintDenomReques
 	return out, nil
 }
 
+func (c *queryClient) StartBlock(ctx context.Context, in *QueryGetStartBlockRequest, opts ...grpc.CallOption) (*QueryGetStartBlockResponse, error) {
+	out := new(QueryGetStartBlockResponse)
+	err := c.cc.Invoke(ctx, "/smartdev0328.bluechip.pageinflation.Query/StartBlock", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) MintedPool(ctx context.Context, in *QueryGetMintedPoolRequest, opts ...grpc.CallOption) (*QueryGetMintedPoolResponse, error) {
+	out := new(QueryGetMintedPoolResponse)
+	err := c.cc.Invoke(ctx, "/smartdev0328.bluechip.pageinflation.Query/MintedPool", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
 	// Queries a MintDenom by index.
 	MintDenom(context.Context, *QueryGetMintDenomRequest) (*QueryGetMintDenomResponse, error)
+	// Queries a StartBlock by index.
+	StartBlock(context.Context, *QueryGetStartBlockRequest) (*QueryGetStartBlockResponse, error)
+	// Queries a MintedPool by index.
+	MintedPool(context.Context, *QueryGetMintedPoolRequest) (*QueryGetMintedPoolResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -293,6 +491,12 @@ func (*UnimplementedQueryServer) Params(ctx context.Context, req *QueryParamsReq
 }
 func (*UnimplementedQueryServer) MintDenom(ctx context.Context, req *QueryGetMintDenomRequest) (*QueryGetMintDenomResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MintDenom not implemented")
+}
+func (*UnimplementedQueryServer) StartBlock(ctx context.Context, req *QueryGetStartBlockRequest) (*QueryGetStartBlockResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StartBlock not implemented")
+}
+func (*UnimplementedQueryServer) MintedPool(ctx context.Context, req *QueryGetMintedPoolRequest) (*QueryGetMintedPoolResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MintedPool not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -335,6 +539,42 @@ func _Query_MintDenom_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_StartBlock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetStartBlockRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).StartBlock(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/smartdev0328.bluechip.pageinflation.Query/StartBlock",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).StartBlock(ctx, req.(*QueryGetStartBlockRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_MintedPool_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetMintedPoolRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).MintedPool(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/smartdev0328.bluechip.pageinflation.Query/MintedPool",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).MintedPool(ctx, req.(*QueryGetMintedPoolRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Query_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "smartdev0328.bluechip.pageinflation.Query",
 	HandlerType: (*QueryServer)(nil),
@@ -346,6 +586,14 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MintDenom",
 			Handler:    _Query_MintDenom_Handler,
+		},
+		{
+			MethodName: "StartBlock",
+			Handler:    _Query_StartBlock_Handler,
+		},
+		{
+			MethodName: "MintedPool",
+			Handler:    _Query_MintedPool_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -464,6 +712,118 @@ func (m *QueryGetMintDenomResponse) MarshalToSizedBuffer(dAtA []byte) (int, erro
 	return len(dAtA) - i, nil
 }
 
+func (m *QueryGetStartBlockRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetStartBlockRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetStartBlockRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetStartBlockResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetStartBlockResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetStartBlockResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.StartBlock.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetMintedPoolRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetMintedPoolRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetMintedPoolRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetMintedPoolResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetMintedPoolResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetMintedPoolResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.MintedPool.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintQuery(dAtA []byte, offset int, v uint64) int {
 	offset -= sovQuery(v)
 	base := offset
@@ -511,6 +871,46 @@ func (m *QueryGetMintDenomResponse) Size() (n int) {
 	var l int
 	_ = l
 	l = m.MintDenom.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryGetStartBlockRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *QueryGetStartBlockResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.StartBlock.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryGetMintedPoolRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *QueryGetMintedPoolResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.MintedPool.Size()
 	n += 1 + l + sovQuery(uint64(l))
 	return n
 }
@@ -763,6 +1163,272 @@ func (m *QueryGetMintDenomResponse) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			if err := m.MintDenom.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetStartBlockRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetStartBlockRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetStartBlockRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetStartBlockResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetStartBlockResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetStartBlockResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field StartBlock", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.StartBlock.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetMintedPoolRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetMintedPoolRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetMintedPoolRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetMintedPoolResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetMintedPoolResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetMintedPoolResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MintedPool", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.MintedPool.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

@@ -2,6 +2,7 @@ package keeper
 
 import (
 	"context"
+	"strconv"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/smartdev0328/bluechip/x/pageinflation/types"
@@ -9,10 +10,22 @@ import (
 
 func (k msgServer) CreatorPoolMint(goCtx context.Context, msg *types.MsgCreatorPoolMint) (*types.MsgCreatorPoolMintResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
+	currentBlock := uint64(ctx.BlockHeight())
+
 	storeMintDenom, isFound := k.GetMintDenom(ctx)
 	mintDenom := ""
 	if isFound {
 		mintDenom = storeMintDenom.Value
+	} else {
+		mintDenom = "ubluechip"
+	}
+	///
+	storeStartBlock, isFound := k.GetStartBlock(ctx)
+	startBlock := uint64(0)
+	if isFound {
+		startBlock, _ = strconv.ParseUint(storeStartBlock.Value, 0, 64)
+	} else {
+		startBlock = currentBlock
 	}
 	mintedAmount := sdk.NewDec(4500000000000000).Quo(k.bankKeeper.GetSupply(ctx, mintDenom).Amount.ToDec().Quo(sdk.NewDec(100))).Mul(sdk.NewDec(1000000))
 	mintedCoin := sdk.NewCoin(mintDenom, mintedAmount.TruncateInt())

@@ -13,6 +13,14 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 	if genState.MintDenom != nil {
 		k.SetMintDenom(ctx, *genState.MintDenom)
 	}
+	// Set if defined
+	if genState.StartBlock != nil {
+		k.SetStartBlock(ctx, *genState.StartBlock)
+	}
+	// Set if defined
+	if genState.MintedPool != nil {
+		k.SetMintedPool(ctx, *genState.MintedPool)
+	}
 	// this line is used by starport scaffolding # genesis/module/init
 	k.SetParams(ctx, genState.Params)
 	newMintDenom := types.MintDenom{
@@ -30,6 +38,16 @@ func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 	mintDenom, found := k.GetMintDenom(ctx)
 	if found {
 		genesis.MintDenom = &mintDenom
+	}
+	// Get all startBlock
+	startBlock, found := k.GetStartBlock(ctx)
+	if found {
+		genesis.StartBlock = &startBlock
+	}
+	// Get all mintedPool
+	mintedPool, found := k.GetMintedPool(ctx)
+	if found {
+		genesis.MintedPool = &mintedPool
 	}
 	// this line is used by starport scaffolding # genesis/module/export
 

@@ -17,6 +17,12 @@ func TestGenesis(t *testing.T) {
 		MintDenom: &types.MintDenom{
 			Value: "81",
 		},
+		StartBlock: &types.StartBlock{
+			Value: "99",
+		},
+		MintedPool: &types.MintedPool{
+			Value: "99",
+		},
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -29,5 +35,7 @@ func TestGenesis(t *testing.T) {
 	nullify.Fill(got)
 
 	require.Equal(t, genesisState.MintDenom, got.MintDenom)
+	require.Equal(t, genesisState.StartBlock, got.StartBlock)
+	require.Equal(t, genesisState.MintedPool, got.MintedPool)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

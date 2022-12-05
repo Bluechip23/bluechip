@@ -24,3 +24,11 @@ func KeyPrefix(p string) []byte {
 const (
 	MintDenomKey = "MintDenom-value-"
 )
+
+const (
+	StartBlockKey = "StartBlock-value-"
+)
+
+const (
+	MintedPoolKey = "MintedPool-value-"
+)

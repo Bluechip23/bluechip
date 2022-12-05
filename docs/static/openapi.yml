@@ -32879,6 +32879,41 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
+  /smartdev0328/bluechip/pageinflation/minted_pool:
+    get:
+      summary: Queries a MintedPool by index.
+      operationId: Smartdev0328BluechipPageinflationMintedPool
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              MintedPool:
+                type: object
+                properties:
+                  value:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
   /smartdev0328/bluechip/pageinflation/params:
     get:
       summary: Parameters queries the parameters of the module.
@@ -32895,6 +32930,41 @@ paths:
             description: >-
               QueryParamsResponse is response type for the Query/Params RPC
               method.
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
+  /smartdev0328/bluechip/pageinflation/start_block:
+    get:
+      summary: Queries a StartBlock by index.
+      operationId: Smartdev0328BluechipPageinflationStartBlock
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              StartBlock:
+                type: object
+                properties:
+                  value:
+                    type: string
         default:
           description: An unexpected error response.
           schema:
@@ -55200,6 +55270,11 @@ definitions:
     properties:
       value:
         type: string
+  smartdev0328.bluechip.pageinflation.MintedPool:
+    type: object
+    properties:
+      value:
+        type: string
   smartdev0328.bluechip.pageinflation.MsgCreatorPoolMintResponse:
     type: object
   smartdev0328.bluechip.pageinflation.Params:
@@ -55213,6 +55288,22 @@ definitions:
         properties:
           value:
             type: string
+  smartdev0328.bluechip.pageinflation.QueryGetMintedPoolResponse:
+    type: object
+    properties:
+      MintedPool:
+        type: object
+        properties:
+          value:
+            type: string
+  smartdev0328.bluechip.pageinflation.QueryGetStartBlockResponse:
+    type: object
+    properties:
+      StartBlock:
+        type: object
+        properties:
+          value:
+            type: string
   smartdev0328.bluechip.pageinflation.QueryParamsResponse:
     type: object
     properties:
@@ -55220,3 +55311,8 @@ definitions:
         description: params holds all the parameters of this module.
         type: object
     description: QueryParamsResponse is response type for the Query/Params RPC method.
+  smartdev0328.bluechip.pageinflation.StartBlock:
+    type: object
+    properties:
+      value:
+        type: string
