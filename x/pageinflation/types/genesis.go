@@ -11,10 +11,17 @@ func DefaultGenesis() *GenesisState {
 		Value: "ubluechip",
 	}
 
+	newStartBlock := StartBlock{
+		Value: 0,
+	}
+
+	newMintedPool := MintedPool{
+		Value: 0,
+	}
 	return &GenesisState{
 		MintDenom:  &newMintDenom,
-		StartBlock: nil,
-		MintedPool: nil,
+		StartBlock: &newStartBlock,
+		MintedPool: &newMintedPool,
 		// this line is used by starport scaffolding # genesis/types/default
 		Params: DefaultParams(),
 	}

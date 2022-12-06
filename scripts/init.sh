@@ -43,8 +43,8 @@ bluechipd collect-gentxs
 
 sed -i 's/stake/ubluechip/g' ~/.bluechip/config/genesis.json
 
-cd ~/.bluechip/config
-jq '.app_state.slashing.params.min_signed_per_window = "0.050000000000000000"' genesis.json > temp.json && mv temp.json genesis.json
-jq '.app_state.slashing.params.slash_fraction_double_sign = "0.080000000000000000"' genesis.json > temp.json && mv temp.json genesis.json
+# cd ~/.bluechip/config
+# jq '.app_state.slashing.params.min_signed_per_window = "0.050000000000000000"' genesis.json > temp.json && mv temp.json genesis.json
+# jq '.app_state.slashing.params.slash_fraction_double_sign = "0.080000000000000000"' genesis.json > temp.json && mv temp.json genesis.json
 
 bluechipd start
