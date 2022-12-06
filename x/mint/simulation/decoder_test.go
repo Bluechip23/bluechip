@@ -6,11 +6,11 @@ import (
 
 	"github.com/stretchr/testify/require"
 
+	"github.com/Smartdev0328/bluechip/app"
+	"github.com/Smartdev0328/bluechip/x/mint/simulation"
+	"github.com/Smartdev0328/bluechip/x/mint/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/kv"
-	"github.com/smartdev0328/bluechip/app"
-	"github.com/smartdev0328/bluechip/x/mint/simulation"
-	"github.com/smartdev0328/bluechip/x/mint/types"
 )
 
 func TestDecodeStore(t *testing.T) {

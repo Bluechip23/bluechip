@@ -8,9 +8,9 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	keepertest "github.com/smartdev0328/bluechip/testutil/keeper"
-	"github.com/smartdev0328/bluechip/testutil/nullify"
-	"github.com/smartdev0328/bluechip/x/pageinflation/types"
+	keepertest "github.com/Smartdev0328/bluechip/testutil/keeper"
+	"github.com/Smartdev0328/bluechip/testutil/nullify"
+	"github.com/Smartdev0328/bluechip/x/pageinflation/types"
 )
 
 func TestMintDenomQuery(t *testing.T) {

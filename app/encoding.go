@@ -1,7 +1,7 @@
 package app
 
 import (
-	"github.com/smartdev0328/bluechip/app/params"
+	"github.com/Smartdev0328/bluechip/app/params"
 
 	"github.com/cosmos/cosmos-sdk/std"
 )

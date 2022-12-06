@@ -8,7 +8,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/client"
 	// "github.com/cosmos/cosmos-sdk/client/flags"
-	"github.com/smartdev0328/bluechip/x/pageinflation/types"
+	"github.com/Smartdev0328/bluechip/x/pageinflation/types"
 )
 
 var (

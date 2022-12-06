@@ -3,8 +3,8 @@ package keeper
 import (
 	"context"
 
+	"github.com/Smartdev0328/bluechip/x/pageinflation/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/smartdev0328/bluechip/x/pageinflation/types"
 )
 
 func (k msgServer) CreatorPoolMint(goCtx context.Context, msg *types.MsgCreatorPoolMint) (*types.MsgCreatorPoolMintResponse, error) {

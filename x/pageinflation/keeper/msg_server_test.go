@@ -4,10 +4,10 @@ import (
 	"context"
 	"testing"
 
+	keepertest "github.com/Smartdev0328/bluechip/testutil/keeper"
+	"github.com/Smartdev0328/bluechip/x/pageinflation/keeper"
+	"github.com/Smartdev0328/bluechip/x/pageinflation/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	keepertest "github.com/smartdev0328/bluechip/testutil/keeper"
-	"github.com/smartdev0328/bluechip/x/pageinflation/keeper"
-	"github.com/smartdev0328/bluechip/x/pageinflation/types"
 )
 
 func setupMsgServer(t testing.TB) (types.MsgServer, context.Context) {

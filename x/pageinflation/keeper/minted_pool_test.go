@@ -6,10 +6,10 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
 
-	keepertest "github.com/smartdev0328/bluechip/testutil/keeper"
-	"github.com/smartdev0328/bluechip/testutil/nullify"
-	"github.com/smartdev0328/bluechip/x/pageinflation/keeper"
-	"github.com/smartdev0328/bluechip/x/pageinflation/types"
+	keepertest "github.com/Smartdev0328/bluechip/testutil/keeper"
+	"github.com/Smartdev0328/bluechip/testutil/nullify"
+	"github.com/Smartdev0328/bluechip/x/pageinflation/keeper"
+	"github.com/Smartdev0328/bluechip/x/pageinflation/types"
 )
 
 func createTestMintedPool(keeper *keeper.Keeper, ctx sdk.Context) types.MintedPool {

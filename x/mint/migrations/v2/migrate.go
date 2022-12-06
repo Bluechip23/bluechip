@@ -1,9 +1,9 @@
 package v2
 
 import (
+	"github.com/Smartdev0328/bluechip/x/mint/types"
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/smartdev0328/bluechip/x/mint/types"
 )
 
 const (

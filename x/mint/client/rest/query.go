@@ -6,9 +6,9 @@ import (
 
 	"github.com/gorilla/mux"
 
+	"github.com/Smartdev0328/bluechip/x/mint/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/types/rest"
-	"github.com/smartdev0328/bluechip/x/mint/types"
 )
 
 func registerQueryRoutes(clientCtx client.Context, r *mux.Router) {

@@ -10,7 +10,7 @@ import "pageinflation/start_block.proto";
 import "pageinflation/minted_pool.proto";
 // this line is used by starport scaffolding # 1
 
-option go_package = "github.com/smartdev0328/bluechip/x/pageinflation/types";
+option go_package = "github.com/Smartdev0328/bluechip/x/pageinflation/types";
 
 // Query defines the gRPC querier service.
 service Query {

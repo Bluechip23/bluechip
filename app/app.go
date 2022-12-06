@@ -17,6 +17,10 @@ import (
 	tmos "github.com/tendermint/tendermint/libs/os"
 	dbm "github.com/tendermint/tm-db"
 
+	"github.com/Smartdev0328/bluechip/docs"
+	"github.com/Smartdev0328/bluechip/x/mint"
+	mintkeeper "github.com/Smartdev0328/bluechip/x/mint/keeper"
+	minttypes "github.com/Smartdev0328/bluechip/x/mint/types"
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/client/grpc/tmservice"
 	"github.com/cosmos/cosmos-sdk/client/rpc"
@@ -90,10 +94,6 @@ import (
 	porttypes "github.com/cosmos/ibc-go/v3/modules/core/05-port/types"
 	ibchost "github.com/cosmos/ibc-go/v3/modules/core/24-host"
 	ibckeeper "github.com/cosmos/ibc-go/v3/modules/core/keeper"
-	"github.com/smartdev0328/bluechip/docs"
-	"github.com/smartdev0328/bluechip/x/mint"
-	mintkeeper "github.com/smartdev0328/bluechip/x/mint/keeper"
-	minttypes "github.com/smartdev0328/bluechip/x/mint/types"
 	tmjson "github.com/tendermint/tendermint/libs/json"
 
 	"github.com/CosmWasm/wasmd/x/wasm"
@@ -108,11 +108,11 @@ import (
 	icahosttypes "github.com/cosmos/ibc-go/v3/modules/apps/27-interchain-accounts/host/types"
 	icatypes "github.com/cosmos/ibc-go/v3/modules/apps/27-interchain-accounts/types"
 
-	encparams "github.com/smartdev0328/bluechip/app/params"
+	encparams "github.com/Smartdev0328/bluechip/app/params"
 
-	pageinflationmodule "github.com/smartdev0328/bluechip/x/pageinflation"
-	pageinflationmodulekeeper "github.com/smartdev0328/bluechip/x/pageinflation/keeper"
-	pageinflationmoduletypes "github.com/smartdev0328/bluechip/x/pageinflation/types"
+	pageinflationmodule "github.com/Smartdev0328/bluechip/x/pageinflation"
+	pageinflationmodulekeeper "github.com/Smartdev0328/bluechip/x/pageinflation/keeper"
+	pageinflationmoduletypes "github.com/Smartdev0328/bluechip/x/pageinflation/types"
 )
 
 const (
@@ -178,7 +178,7 @@ func GetWasmOpts(appOpts servertypes.AppOptions) []wasm.Option {
 		wasmOpts = append(wasmOpts, wasmkeeper.WithVMCacheMetrics(prometheus.DefaultRegisterer))
 	}
 
-	wasmOpts = append(wasmOpts, wasmkeeper.WithGasRegister(NewbluechipWasmGasRegister()))
+	wasmOpts = append(wasmOpts, wasmkeeper.WithGasRegister(NewBluechipWasmGasRegister()))
 
 	return wasmOpts
 }

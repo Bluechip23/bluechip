@@ -34,8 +34,8 @@ import (
 	"github.com/CosmWasm/wasmd/x/wasm"
 	wasmkeeper "github.com/CosmWasm/wasmd/x/wasm/keeper"
 	wasmtypes "github.com/CosmWasm/wasmd/x/wasm/types"
-	"github.com/smartdev0328/bluechip/app"
-	"github.com/smartdev0328/bluechip/app/params"
+	"github.com/Smartdev0328/bluechip/app"
+	"github.com/Smartdev0328/bluechip/app/params"
 )
 
 // NewRootCmd creates a new root command for bluechipd. It is called once in the
@@ -63,7 +63,7 @@ func NewRootCmd() (*cobra.Command, params.EncodingConfig) {
 
 	rootCmd := &cobra.Command{
 		Use:   version.AppName,
-		Short: "bluechip Smart Contract Zone",
+		Short: "Bluechip Smart Contract Zone",
 		PersistentPreRunE: func(cmd *cobra.Command, _ []string) error {
 			// set the default command outputs
 			cmd.SetOut(cmd.OutOrStdout())

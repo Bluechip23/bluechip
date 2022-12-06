@@ -1,5 +1,5 @@
 version: v1
-name: buf.build/Smartdev0328/bluechip
+name: buf.build/CosmosContracts/bluechip
 deps:
   - buf.build/gogo/protobuf
   - buf.build/googleapis/googleapis

@@ -1,6 +1,12 @@
 vue/node_modules
 vue/dist
-release/
-.idea/
-.vscode/
-.DS_Store
+secret.yml
+cosmoshub3.json
+exchanges.json
+bluechip_out.json
+bin
+.vscode
+
+# emacs editor config
+\#*\#
+.\#*

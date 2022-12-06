@@ -1,8 +1,8 @@
 package keeper
 
 import (
+	v2 "github.com/Smartdev0328/bluechip/x/mint/migrations/v2"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	v2 "github.com/smartdev0328/bluechip/x/mint/migrations/v2"
 )
 
 // Migrator is a struct for handling in-place state migrations.

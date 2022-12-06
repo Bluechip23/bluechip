@@ -10,7 +10,7 @@ import (
 	// "github.com/cosmos/cosmos-sdk/client/flags"
 	// sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/smartdev0328/bluechip/x/pageinflation/types"
+	"github.com/Smartdev0328/bluechip/x/pageinflation/types"
 )
 
 // GetQueryCmd returns the cli query commands for this module

@@ -3,7 +3,7 @@ package types_test
 import (
 	"testing"
 
-	"github.com/smartdev0328/bluechip/x/pageinflation/types"
+	"github.com/Smartdev0328/bluechip/x/pageinflation/types"
 	"github.com/stretchr/testify/require"
 )
 
@@ -26,10 +26,10 @@ func TestGenesisState_Validate(t *testing.T) {
 					Value: "1",
 				},
 				StartBlock: &types.StartBlock{
-					Value: "13",
+					Value: 13,
 				},
 				MintedPool: &types.MintedPool{
-					Value: "32",
+					Value: 32,
 				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},

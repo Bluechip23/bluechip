@@ -5,21 +5,21 @@ import (
 )
 
 const (
-	// DefaultbluechipInstanceCost is initially set the same as in wasmd
-	DefaultbluechipInstanceCost uint64 = 60_000
-	// DefaultbluechipCompileCost set to a large number for testing
-	DefaultbluechipCompileCost uint64 = 3
+	// DefaultBluechipInstanceCost is initially set the same as in wasmd
+	DefaultBluechipInstanceCost uint64 = 60_000
+	// DefaultBluechipCompileCost set to a large number for testing
+	DefaultBluechipCompileCost uint64 = 3
 )
 
-// bluechipGasRegisterConfig is defaults plus a custom compile amount
-func bluechipGasRegisterConfig() wasmkeeper.WasmGasRegisterConfig {
+// BluechipGasRegisterConfig is defaults plus a custom compile amount
+func BluechipGasRegisterConfig() wasmkeeper.WasmGasRegisterConfig {
 	gasConfig := wasmkeeper.DefaultGasRegisterConfig()
-	gasConfig.InstanceCost = DefaultbluechipInstanceCost
-	gasConfig.CompileCost = DefaultbluechipCompileCost
+	gasConfig.InstanceCost = DefaultBluechipInstanceCost
+	gasConfig.CompileCost = DefaultBluechipCompileCost
 
 	return gasConfig
 }
 
-func NewbluechipWasmGasRegister() wasmkeeper.WasmGasRegister {
-	return wasmkeeper.NewWasmGasRegister(bluechipGasRegisterConfig())
+func NewBluechipWasmGasRegister() wasmkeeper.WasmGasRegister {
+	return wasmkeeper.NewWasmGasRegister(BluechipGasRegisterConfig())
 }

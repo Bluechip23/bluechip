@@ -3,8 +3,8 @@ package types
 import (
 	"testing"
 
+	"github.com/Smartdev0328/bluechip/testutil/sample"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/smartdev0328/bluechip/testutil/sample"
 	"github.com/stretchr/testify/require"
 )
 

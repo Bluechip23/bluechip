@@ -9,10 +9,10 @@ import (
 	tmcli "github.com/tendermint/tendermint/libs/cli"
 	"google.golang.org/grpc/status"
 
-	"github.com/smartdev0328/bluechip/testutil/network"
-	"github.com/smartdev0328/bluechip/testutil/nullify"
-	"github.com/smartdev0328/bluechip/x/pageinflation/client/cli"
-	"github.com/smartdev0328/bluechip/x/pageinflation/types"
+	"github.com/Smartdev0328/bluechip/testutil/network"
+	"github.com/Smartdev0328/bluechip/testutil/nullify"
+	"github.com/Smartdev0328/bluechip/x/pageinflation/client/cli"
+	"github.com/Smartdev0328/bluechip/x/pageinflation/types"
 )
 
 func networkWithStartBlockObjects(t *testing.T) (*network.Network, types.StartBlock) {

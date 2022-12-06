@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"math/rand"
 
+	"github.com/Smartdev0328/bluechip/x/mint/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
-	"github.com/smartdev0328/bluechip/x/mint/types"
 )
 
 // Simulation parameter constants

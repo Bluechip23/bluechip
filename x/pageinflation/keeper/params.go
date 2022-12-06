@@ -1,8 +1,8 @@
 package keeper
 
 import (
+	"github.com/Smartdev0328/bluechip/x/pageinflation/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/smartdev0328/bluechip/x/pageinflation/types"
 )
 
 // GetParams get all parameters as types.Params

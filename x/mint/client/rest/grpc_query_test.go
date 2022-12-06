@@ -14,7 +14,7 @@ import (
 	"github.com/gogo/protobuf/proto"
 	"github.com/stretchr/testify/suite"
 
-	minttypes "github.com/smartdev0328/bluechip/x/mint/types"
+	minttypes "github.com/Smartdev0328/bluechip/x/mint/types"
 )
 
 type IntegrationTestSuite struct {
