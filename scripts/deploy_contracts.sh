@@ -26,7 +26,7 @@ echo $CW20_CODE
 # Instantiate cw20 contract
 CW20_INIT='{
     "name": "PageToken1",
-    "symbol": "PGT1",
+    "symbol": "PGT",
     "decimals": 6,
     "initial_balances": [{"address":"'"$A"'","amount":"1000000000"},{"address":"'"$($BINARY keys show validator1 -a)"'","amount":"1000000000"}]
 }'

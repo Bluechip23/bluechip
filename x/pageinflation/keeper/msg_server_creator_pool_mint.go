@@ -10,6 +10,8 @@ import (
 )
 
 func (k msgServer) CreatorPoolMint(goCtx context.Context, msg *types.MsgCreatorPoolMint) (*types.MsgCreatorPoolMintResponse, error) {
+
+	///cg
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
 	storeMintDenom, _ := k.GetMintDenom(ctx)
@@ -40,7 +42,6 @@ func (k msgServer) CreatorPoolMint(goCtx context.Context, msg *types.MsgCreatorP
 
 	fmt.Println("\n\n\n")
 	fmt.Println(mintedPool)
-	fmt.Println(startBlock)
 	fmt.Println("\n\n\n")
 	if coins.Empty() {
 		panic("err")
