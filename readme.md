@@ -1,8 +1,5 @@
 # Junø
 
-
-![c11](https://user-images.githubusercontent.com/79812965/131373443-5ff0d9f6-2e2a-41bd-8347-22ac4983e625.jpg)
-
 ❗️For issue disclosure, check out [SECURITY.md](./SECURITY.md) ❗️
 
 🚀 For release procedures, check out [RELEASES.md](./RELEASES.md). 🚀
