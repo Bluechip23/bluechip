@@ -1,0 +1,7 @@
+syntax = "proto3";
+package smartdev0328.bluechip.airdrop;
+
+option go_package = "github.com/Smartdev0328/bluechip/x/airdrop/types";
+
+// Msg defines the Msg service.
+service Msg {}

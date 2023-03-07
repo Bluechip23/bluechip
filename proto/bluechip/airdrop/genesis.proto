@@ -1,0 +1,12 @@
+syntax = "proto3";
+package smartdev0328.bluechip.airdrop;
+
+import "gogoproto/gogo.proto";
+import "bluechip/airdrop/params.proto";
+
+option go_package = "github.com/Smartdev0328/bluechip/x/airdrop/types";
+
+// GenesisState defines the airdrop module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+}
