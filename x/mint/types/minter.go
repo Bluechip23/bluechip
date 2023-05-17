@@ -77,8 +77,7 @@ func (m Minter) NextAnnualProvisions(_ Params, totalSupply sdk.Int) sdk.Dec {
 // BlockProvision returns the provisions for a block based on the annual
 // provisions rate.
 func (m Minter) BlockProvision(params Params, totalSupply sdk.Int) sdk.Coin {
-	provisionAmt := m.AnnualProvisions.QuoInt(sdk.NewInt(int64(params.BlocksPerYear)))
-
+	provisionAmt := sdk.NewDec(1000000)
 	// Because of rounding, we might mint too many tokens in this phase, let's limit it
 	futureSupply := totalSupply.Add(provisionAmt.TruncateInt())
 	if futureSupply.GT(m.TargetSupply) {
