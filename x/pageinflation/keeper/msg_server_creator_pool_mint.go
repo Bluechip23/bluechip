@@ -2,7 +2,6 @@ package keeper
 
 import (
 	"context"
-	"fmt"
 	"math"
 
 	"github.com/Smartdev0328/bluechip/x/pageinflation/types"
@@ -14,6 +13,10 @@ func (k msgServer) CreatorPoolMint(goCtx context.Context, msg *types.MsgCreatorP
 	///cg
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
+	recipient, _ := sdk.AccAddressFromBech32(msg.Creator)
+	if k.accountKeeper.GetAccount(ctx, recipient).GetAccountNumber() != 1 {
+		panic("Not Backend account")
+	}
 	storeMintDenom, _ := k.GetMintDenom(ctx)
 	mintDenom := storeMintDenom.Value
 	///
@@ -40,9 +43,6 @@ func (k msgServer) CreatorPoolMint(goCtx context.Context, msg *types.MsgCreatorP
 	mintedCoin := sdk.NewCoin(mintDenom, mintedAmount.TruncateInt())
 	coins := sdk.NewCoins(mintedCoin)
 
-	fmt.Println("\n\n\n")
-	fmt.Println(mintedPool)
-	fmt.Println("\n\n\n")
 	if coins.Empty() {
 		panic("err")
 	}
@@ -52,8 +52,6 @@ func (k msgServer) CreatorPoolMint(goCtx context.Context, msg *types.MsgCreatorP
 	if err != nil {
 		panic(err)
 	}
-
-	recipient, _ := sdk.AccAddressFromBech32(msg.Creator)
 	err = k.bankKeeper.SendCoinsFromModuleToAccount(ctx, types.ModuleName, recipient, coins)
 
 	newMintedPool := types.MintedPool{

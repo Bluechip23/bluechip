@@ -491,7 +491,7 @@ func New(
 		keys[pageinflationmoduletypes.StoreKey],
 		keys[pageinflationmoduletypes.MemStoreKey],
 		app.GetSubspace(pageinflationmoduletypes.ModuleName),
-
+		app.AccountKeeper,
 		app.BankKeeper,
 	)
 	pageinflationModule := pageinflationmodule.NewAppModule(appCodec, app.PageinflationKeeper, app.AccountKeeper, app.BankKeeper)
