@@ -47,25 +47,28 @@ bluechipd init --chain-id=bluechip_1 validator1
 <!-- echo "seed words for validator1" | bluechipd keys add validator1 --keyring-backend test --recover -->
 
 ```
-echo "claim either tribe mercy genre drastic stamp spring attend ready believe material hedgehog space remind valley give slight cram arm release universe hybrid abuse" | bluechipd keys add validator1 --keyring-backend test --recover
+echo "<seed words>" | bluechipd keys add validator1 --keyring-backend test --recover
 
 bluechipd add-genesis-account $(bluechipd keys show validator1 -a --keyring-backend test) 50000000ubluechip 
 ```
 <!-- bluechipd keys add backend_account -->
 <!-- echo "seed words for backend wallet" | bluechipd keys add backend_account --keyring-backend test --recover -->
-echo "require resist steak energy armed prison embody abuse huge submit host subway merit kiwi inherit distance cliff suffer general program connect link employ crew" | bluechipd keys add backend_account --keyring-backend test --recover
+```
+echo "<seed words>" | bluechipd keys add backend_account --keyring-backend test --recover
 
 bluechipd add-genesis-account $(bluechipd keys show backend_account -a --keyring-backend test) 30000000000000ubluechip
 
 bluechipd gentx validator1 50000000ubluechip --keyring-backend test --chain-id bluechip_1
 
-bluechipd collect-gentxs
+bluechipd collect-gentxs 
 sed -i 's/stake/ubluechip/g' ~/.bluechip/config/genesis.json
+```
 
 ## Config parameters
+```
 cd ~/.bluechip/config
 jq '.app_state.slashing.params.min_signed_per_window = "0.050000000000000000"' genesis.json > temp.json && mv temp.json genesis.json
 jq '.app_state.slashing.params.slash_fraction_double_sign = "0.080000000000000000"' genesis.json > temp.json && mv temp.json genesis.json
-
+```
 # 3. start the chain
 bluechipd start
