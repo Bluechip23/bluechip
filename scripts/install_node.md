@@ -25,7 +25,7 @@ export PATH=$PATH:/usr/local/go/bin
 ## clone the bluechip git repository.
 
 ```
-git clone https://github.com/Smartdev0328/bluechip.git
+git clone https://github.com/Bluechip23/bluechip.git
 ```
 
 ## build the executable binary
