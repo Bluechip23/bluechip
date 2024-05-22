@@ -9,10 +9,10 @@ import (
 	tmcli "github.com/tendermint/tendermint/libs/cli"
 	"google.golang.org/grpc/status"
 
-	"github.com/Smartdev0328/bluechip/testutil/network"
-	"github.com/Smartdev0328/bluechip/testutil/nullify"
-	"github.com/Smartdev0328/bluechip/x/pageinflation/client/cli"
-	"github.com/Smartdev0328/bluechip/x/pageinflation/types"
+	"github.com/BlueChip23/bluechip/testutil/network"
+	"github.com/BlueChip23/bluechip/testutil/nullify"
+	"github.com/BlueChip23/bluechip/x/pageinflation/client/cli"
+	"github.com/BlueChip23/bluechip/x/pageinflation/types"
 )
 
 func networkWithMintedPoolObjects(t *testing.T) (*network.Network, types.MintedPool) {

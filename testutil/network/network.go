@@ -18,7 +18,7 @@ import (
 	tmrand "github.com/tendermint/tendermint/libs/rand"
 	tmdb "github.com/tendermint/tm-db"
 
-	"github.com/Smartdev0328/bluechip/app"
+	"github.com/BlueChip23/bluechip/app"
 )
 
 type (

@@ -67,7 +67,7 @@ func (m *MintDenom) GetValue() string {
 }
 
 func init() {
-	proto.RegisterType((*MintDenom)(nil), "smartdev0328.bluechip.pageinflation.MintDenom")
+	proto.RegisterType((*MintDenom)(nil), "BlueChip23.bluechip.pageinflation.MintDenom")
 }
 
 func init() { proto.RegisterFile("pageinflation/mint_denom.proto", fileDescriptor_b3b0c858bfab0555) }

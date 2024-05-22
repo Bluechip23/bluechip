@@ -3,8 +3,8 @@ package keeper
 import (
 	"testing"
 
-	"github.com/Smartdev0328/bluechip/x/pageinflation/keeper"
-	"github.com/Smartdev0328/bluechip/x/pageinflation/types"
+	"github.com/BlueChip23/bluechip/x/pageinflation/keeper"
+	"github.com/BlueChip23/bluechip/x/pageinflation/types"
 	"github.com/cosmos/cosmos-sdk/codec"
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	"github.com/cosmos/cosmos-sdk/store"

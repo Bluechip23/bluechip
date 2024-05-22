@@ -67,7 +67,7 @@ func (m *StartBlock) GetValue() uint64 {
 }
 
 func init() {
-	proto.RegisterType((*StartBlock)(nil), "smartdev0328.bluechip.pageinflation.StartBlock")
+	proto.RegisterType((*StartBlock)(nil), "BlueChip23.bluechip.pageinflation.StartBlock")
 }
 
 func init() { proto.RegisterFile("pageinflation/start_block.proto", fileDescriptor_d8099d24dde06966) }

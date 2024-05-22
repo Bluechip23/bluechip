@@ -137,8 +137,8 @@ func (m *Params) GetBlocksPerYear() uint64 {
 }
 
 func init() {
-	proto.RegisterType((*Minter)(nil), "smartdev0328.bluechip.mint.Minter")
-	proto.RegisterType((*Params)(nil), "smartdev0328.bluechip.mint.Params")
+	proto.RegisterType((*Minter)(nil), "BlueChip23.bluechip.mint.Minter")
+	proto.RegisterType((*Params)(nil), "BlueChip23.bluechip.mint.Params")
 }
 
 func init() { proto.RegisterFile("mint/mint.proto", fileDescriptor_e1b9fbb701b2a577) }

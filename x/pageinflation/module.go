@@ -12,9 +12,9 @@ import (
 
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/Smartdev0328/bluechip/x/pageinflation/client/cli"
-	"github.com/Smartdev0328/bluechip/x/pageinflation/keeper"
-	"github.com/Smartdev0328/bluechip/x/pageinflation/types"
+	"github.com/BlueChip23/bluechip/x/pageinflation/client/cli"
+	"github.com/BlueChip23/bluechip/x/pageinflation/keeper"
+	"github.com/BlueChip23/bluechip/x/pageinflation/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/codec"
 	cdctypes "github.com/cosmos/cosmos-sdk/codec/types"

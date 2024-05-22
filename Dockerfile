@@ -1,5 +1,5 @@
-# docker build . -t Smartdev0328 /bluechip:latest
-# docker run --rm -it Smartdev0328/bluechip:latest /bin/sh
+# docker build . -t BlueChip23 /bluechip:latest
+# docker run --rm -it BlueChip23/bluechip:latest /bin/sh
 FROM golang:1.18-alpine3.15 AS go-builder
 
 # this comes from standard alpine nightly file

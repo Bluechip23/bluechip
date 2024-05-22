@@ -67,7 +67,7 @@ func (m *MintedPool) GetValue() uint64 {
 }
 
 func init() {
-	proto.RegisterType((*MintedPool)(nil), "smartdev0328.bluechip.pageinflation.MintedPool")
+	proto.RegisterType((*MintedPool)(nil), "BlueChip23.bluechip.pageinflation.MintedPool")
 }
 
 func init() { proto.RegisterFile("pageinflation/minted_pool.proto", fileDescriptor_c4bd3f65933f9baa) }

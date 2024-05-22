@@ -93,7 +93,7 @@ func (m *GenesisState) GetMintedPool() *MintedPool {
 }
 
 func init() {
-	proto.RegisterType((*GenesisState)(nil), "smartdev0328.bluechip.pageinflation.GenesisState")
+	proto.RegisterType((*GenesisState)(nil), "BlueChip23.bluechip.pageinflation.GenesisState")
 }
 
 func init() { proto.RegisterFile("pageinflation/genesis.proto", fileDescriptor_ad6022376e3f6834) }

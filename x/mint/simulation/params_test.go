@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/Smartdev0328/bluechip/x/mint/simulation"
+	"github.com/BlueChip23/bluechip/x/mint/simulation"
 )
 
 func TestParamChangest(t *testing.T) {

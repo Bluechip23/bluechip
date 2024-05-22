@@ -8,9 +8,9 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	keepertest "github.com/Smartdev0328/bluechip/testutil/keeper"
-	"github.com/Smartdev0328/bluechip/testutil/nullify"
-	"github.com/Smartdev0328/bluechip/x/pageinflation/types"
+	keepertest "github.com/BlueChip23/bluechip/testutil/keeper"
+	"github.com/BlueChip23/bluechip/testutil/nullify"
+	"github.com/BlueChip23/bluechip/x/pageinflation/types"
 )
 
 func TestMintedPoolQuery(t *testing.T) {

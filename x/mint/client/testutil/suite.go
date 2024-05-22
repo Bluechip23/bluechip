@@ -7,8 +7,8 @@ import (
 	"github.com/stretchr/testify/suite"
 	tmcli "github.com/tendermint/tendermint/libs/cli"
 
-	"github.com/Smartdev0328/bluechip/x/mint/client/cli"
-	minttypes "github.com/Smartdev0328/bluechip/x/mint/types"
+	"github.com/BlueChip23/bluechip/x/mint/client/cli"
+	minttypes "github.com/BlueChip23/bluechip/x/mint/types"
 
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	clitestutil "github.com/cosmos/cosmos-sdk/testutil/cli"

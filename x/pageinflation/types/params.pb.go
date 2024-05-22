@@ -60,7 +60,7 @@ func (m *Params) XXX_DiscardUnknown() {
 var xxx_messageInfo_Params proto.InternalMessageInfo
 
 func init() {
-	proto.RegisterType((*Params)(nil), "smartdev0328.bluechip.pageinflation.Params")
+	proto.RegisterType((*Params)(nil), "BlueChip23.bluechip.pageinflation.Params")
 }
 
 func init() { proto.RegisterFile("pageinflation/params.proto", fileDescriptor_b5ba73b4a8e22298) }

@@ -108,8 +108,8 @@ func (m *MsgCreatorPoolMintResponse) XXX_DiscardUnknown() {
 var xxx_messageInfo_MsgCreatorPoolMintResponse proto.InternalMessageInfo
 
 func init() {
-	proto.RegisterType((*MsgCreatorPoolMint)(nil), "smartdev0328.bluechip.pageinflation.MsgCreatorPoolMint")
-	proto.RegisterType((*MsgCreatorPoolMintResponse)(nil), "smartdev0328.bluechip.pageinflation.MsgCreatorPoolMintResponse")
+	proto.RegisterType((*MsgCreatorPoolMint)(nil), "BlueChip23.bluechip.pageinflation.MsgCreatorPoolMint")
+	proto.RegisterType((*MsgCreatorPoolMintResponse)(nil), "BlueChip23.bluechip.pageinflation.MsgCreatorPoolMintResponse")
 }
 
 func init() { proto.RegisterFile("pageinflation/tx.proto", fileDescriptor_9cdd0a7dd6d484e0) }
@@ -157,7 +157,7 @@ func NewMsgClient(cc grpc1.ClientConn) MsgClient {
 
 func (c *msgClient) CreatorPoolMint(ctx context.Context, in *MsgCreatorPoolMint, opts ...grpc.CallOption) (*MsgCreatorPoolMintResponse, error) {
 	out := new(MsgCreatorPoolMintResponse)
-	err := c.cc.Invoke(ctx, "/smartdev0328.bluechip.pageinflation.Msg/CreatorPoolMint", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/BlueChip23.bluechip.pageinflation.Msg/CreatorPoolMint", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -191,7 +191,7 @@ func _Msg_CreatorPoolMint_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/smartdev0328.bluechip.pageinflation.Msg/CreatorPoolMint",
+		FullMethod: "/BlueChip23.bluechip.pageinflation.Msg/CreatorPoolMint",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MsgServer).CreatorPoolMint(ctx, req.(*MsgCreatorPoolMint))
@@ -200,7 +200,7 @@ func _Msg_CreatorPoolMint_Handler(srv interface{}, ctx context.Context, dec func
 }
 
 var _Msg_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "smartdev0328.bluechip.pageinflation.Msg",
+	ServiceName: "BlueChip23.bluechip.pageinflation.Msg",
 	HandlerType: (*MsgServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

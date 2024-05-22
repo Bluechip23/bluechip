@@ -1,12 +1,12 @@
 syntax = "proto3";
-package smartdev0328.bluechip.mint;
+package BlueChip23.bluechip.mint;
 
 
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "mint/mint.proto";
 
-option go_package = "github.com/Smartdev0328/bluechip/x/mint/types";
+option go_package = "github.com/BlueChip23/bluechip/x/mint/types";
 
 // Query provides defines the gRPC querier service.
 service Query {

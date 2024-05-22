@@ -3,9 +3,9 @@ package pageinflation
 import (
 	"math/rand"
 
-	"github.com/Smartdev0328/bluechip/testutil/sample"
-	pageinflationsimulation "github.com/Smartdev0328/bluechip/x/pageinflation/simulation"
-	"github.com/Smartdev0328/bluechip/x/pageinflation/types"
+	"github.com/BlueChip23/bluechip/testutil/sample"
+	pageinflationsimulation "github.com/BlueChip23/bluechip/x/pageinflation/simulation"
+	"github.com/BlueChip23/bluechip/x/pageinflation/types"
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	simappparams "github.com/cosmos/cosmos-sdk/simapp/params"
 	sdk "github.com/cosmos/cosmos-sdk/types"

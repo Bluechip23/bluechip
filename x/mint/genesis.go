@@ -1,8 +1,8 @@
 package mint
 
 import (
-	"github.com/Smartdev0328/bluechip/x/mint/keeper"
-	"github.com/Smartdev0328/bluechip/x/mint/types"
+	"github.com/BlueChip23/bluechip/x/mint/keeper"
+	"github.com/BlueChip23/bluechip/x/mint/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 

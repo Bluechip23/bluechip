@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/Smartdev0328/bluechip/app"
+	"github.com/BlueChip23/bluechip/app"
 	"github.com/cosmos/cosmos-sdk/server"
 
 	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"

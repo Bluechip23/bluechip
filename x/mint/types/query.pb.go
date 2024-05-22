@@ -269,12 +269,12 @@ func (m *QueryAnnualProvisionsResponse) XXX_DiscardUnknown() {
 var xxx_messageInfo_QueryAnnualProvisionsResponse proto.InternalMessageInfo
 
 func init() {
-	proto.RegisterType((*QueryParamsRequest)(nil), "smartdev0328.bluechip.mint.QueryParamsRequest")
-	proto.RegisterType((*QueryParamsResponse)(nil), "smartdev0328.bluechip.mint.QueryParamsResponse")
-	proto.RegisterType((*QueryInflationRequest)(nil), "smartdev0328.bluechip.mint.QueryInflationRequest")
-	proto.RegisterType((*QueryInflationResponse)(nil), "smartdev0328.bluechip.mint.QueryInflationResponse")
-	proto.RegisterType((*QueryAnnualProvisionsRequest)(nil), "smartdev0328.bluechip.mint.QueryAnnualProvisionsRequest")
-	proto.RegisterType((*QueryAnnualProvisionsResponse)(nil), "smartdev0328.bluechip.mint.QueryAnnualProvisionsResponse")
+	proto.RegisterType((*QueryParamsRequest)(nil), "BlueChip23.bluechip.mint.QueryParamsRequest")
+	proto.RegisterType((*QueryParamsResponse)(nil), "BlueChip23.bluechip.mint.QueryParamsResponse")
+	proto.RegisterType((*QueryInflationRequest)(nil), "BlueChip23.bluechip.mint.QueryInflationRequest")
+	proto.RegisterType((*QueryInflationResponse)(nil), "BlueChip23.bluechip.mint.QueryInflationResponse")
+	proto.RegisterType((*QueryAnnualProvisionsRequest)(nil), "BlueChip23.bluechip.mint.QueryAnnualProvisionsRequest")
+	proto.RegisterType((*QueryAnnualProvisionsResponse)(nil), "BlueChip23.bluechip.mint.QueryAnnualProvisionsResponse")
 }
 
 func init() { proto.RegisterFile("mint/query.proto", fileDescriptor_3082aecef156f565) }
@@ -343,7 +343,7 @@ func NewQueryClient(cc grpc1.ClientConn) QueryClient {
 
 func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error) {
 	out := new(QueryParamsResponse)
-	err := c.cc.Invoke(ctx, "/smartdev0328.bluechip.mint.Query/Params", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/BlueChip23.bluechip.mint.Query/Params", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -352,7 +352,7 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 
 func (c *queryClient) Inflation(ctx context.Context, in *QueryInflationRequest, opts ...grpc.CallOption) (*QueryInflationResponse, error) {
 	out := new(QueryInflationResponse)
-	err := c.cc.Invoke(ctx, "/smartdev0328.bluechip.mint.Query/Inflation", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/BlueChip23.bluechip.mint.Query/Inflation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -361,7 +361,7 @@ func (c *queryClient) Inflation(ctx context.Context, in *QueryInflationRequest, 
 
 func (c *queryClient) AnnualProvisions(ctx context.Context, in *QueryAnnualProvisionsRequest, opts ...grpc.CallOption) (*QueryAnnualProvisionsResponse, error) {
 	out := new(QueryAnnualProvisionsResponse)
-	err := c.cc.Invoke(ctx, "/smartdev0328.bluechip.mint.Query/AnnualProvisions", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/BlueChip23.bluechip.mint.Query/AnnualProvisions", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -406,7 +406,7 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/smartdev0328.bluechip.mint.Query/Params",
+		FullMethod: "/BlueChip23.bluechip.mint.Query/Params",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(QueryServer).Params(ctx, req.(*QueryParamsRequest))
@@ -424,7 +424,7 @@ func _Query_Inflation_Handler(srv interface{}, ctx context.Context, dec func(int
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/smartdev0328.bluechip.mint.Query/Inflation",
+		FullMethod: "/BlueChip23.bluechip.mint.Query/Inflation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(QueryServer).Inflation(ctx, req.(*QueryInflationRequest))
@@ -442,7 +442,7 @@ func _Query_AnnualProvisions_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/smartdev0328.bluechip.mint.Query/AnnualProvisions",
+		FullMethod: "/BlueChip23.bluechip.mint.Query/AnnualProvisions",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(QueryServer).AnnualProvisions(ctx, req.(*QueryAnnualProvisionsRequest))
@@ -451,7 +451,7 @@ func _Query_AnnualProvisions_Handler(srv interface{}, ctx context.Context, dec f
 }
 
 var _Query_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "smartdev0328.bluechip.mint.Query",
+	ServiceName: "BlueChip23.bluechip.mint.Query",
 	HandlerType: (*QueryServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

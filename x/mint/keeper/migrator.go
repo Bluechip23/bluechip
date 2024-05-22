@@ -1,7 +1,7 @@
 package keeper
 
 import (
-	v2 "github.com/Smartdev0328/bluechip/x/mint/migrations/v2"
+	v2 "github.com/BlueChip23/bluechip/x/mint/migrations/v2"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
