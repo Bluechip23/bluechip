@@ -1,4 +1,4 @@
-module github.com/Smartdev0328/bluechip
+module github.com/BlueChip23/bluechip
 
 go 1.18
 

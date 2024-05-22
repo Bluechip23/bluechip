@@ -3,10 +3,10 @@ package pageinflation_test
 import (
 	"testing"
 
-	keepertest "github.com/Smartdev0328/bluechip/testutil/keeper"
-	"github.com/Smartdev0328/bluechip/testutil/nullify"
-	"github.com/Smartdev0328/bluechip/x/pageinflation"
-	"github.com/Smartdev0328/bluechip/x/pageinflation/types"
+	keepertest "github.com/BlueChip23/bluechip/testutil/keeper"
+	"github.com/BlueChip23/bluechip/testutil/nullify"
+	"github.com/BlueChip23/bluechip/x/pageinflation"
+	"github.com/BlueChip23/bluechip/x/pageinflation/types"
 	"github.com/stretchr/testify/require"
 )
 

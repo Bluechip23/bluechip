@@ -3,7 +3,7 @@ package types_test
 import (
 	"testing"
 
-	"github.com/Smartdev0328/bluechip/x/pageinflation/types"
+	"github.com/BlueChip23/bluechip/x/pageinflation/types"
 	"github.com/stretchr/testify/require"
 )
 

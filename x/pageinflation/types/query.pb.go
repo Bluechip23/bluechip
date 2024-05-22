@@ -354,14 +354,14 @@ func (m *QueryGetMintedPoolResponse) GetMintedPool() MintedPool {
 }
 
 func init() {
-	proto.RegisterType((*QueryParamsRequest)(nil), "smartdev0328.bluechip.pageinflation.QueryParamsRequest")
-	proto.RegisterType((*QueryParamsResponse)(nil), "smartdev0328.bluechip.pageinflation.QueryParamsResponse")
-	proto.RegisterType((*QueryGetMintDenomRequest)(nil), "smartdev0328.bluechip.pageinflation.QueryGetMintDenomRequest")
-	proto.RegisterType((*QueryGetMintDenomResponse)(nil), "smartdev0328.bluechip.pageinflation.QueryGetMintDenomResponse")
-	proto.RegisterType((*QueryGetStartBlockRequest)(nil), "smartdev0328.bluechip.pageinflation.QueryGetStartBlockRequest")
-	proto.RegisterType((*QueryGetStartBlockResponse)(nil), "smartdev0328.bluechip.pageinflation.QueryGetStartBlockResponse")
-	proto.RegisterType((*QueryGetMintedPoolRequest)(nil), "smartdev0328.bluechip.pageinflation.QueryGetMintedPoolRequest")
-	proto.RegisterType((*QueryGetMintedPoolResponse)(nil), "smartdev0328.bluechip.pageinflation.QueryGetMintedPoolResponse")
+	proto.RegisterType((*QueryParamsRequest)(nil), "BlueChip23.bluechip.pageinflation.QueryParamsRequest")
+	proto.RegisterType((*QueryParamsResponse)(nil), "BlueChip23.bluechip.pageinflation.QueryParamsResponse")
+	proto.RegisterType((*QueryGetMintDenomRequest)(nil), "BlueChip23.bluechip.pageinflation.QueryGetMintDenomRequest")
+	proto.RegisterType((*QueryGetMintDenomResponse)(nil), "BlueChip23.bluechip.pageinflation.QueryGetMintDenomResponse")
+	proto.RegisterType((*QueryGetStartBlockRequest)(nil), "BlueChip23.bluechip.pageinflation.QueryGetStartBlockRequest")
+	proto.RegisterType((*QueryGetStartBlockResponse)(nil), "BlueChip23.bluechip.pageinflation.QueryGetStartBlockResponse")
+	proto.RegisterType((*QueryGetMintedPoolRequest)(nil), "BlueChip23.bluechip.pageinflation.QueryGetMintedPoolRequest")
+	proto.RegisterType((*QueryGetMintedPoolResponse)(nil), "BlueChip23.bluechip.pageinflation.QueryGetMintedPoolResponse")
 }
 
 func init() { proto.RegisterFile("pageinflation/query.proto", fileDescriptor_f9d409b4ff2e9334) }
@@ -436,7 +436,7 @@ func NewQueryClient(cc grpc1.ClientConn) QueryClient {
 
 func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error) {
 	out := new(QueryParamsResponse)
-	err := c.cc.Invoke(ctx, "/smartdev0328.bluechip.pageinflation.Query/Params", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/BlueChip23.bluechip.pageinflation.Query/Params", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -445,7 +445,7 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 
 func (c *queryClient) MintDenom(ctx context.Context, in *QueryGetMintDenomRequest, opts ...grpc.CallOption) (*QueryGetMintDenomResponse, error) {
 	out := new(QueryGetMintDenomResponse)
-	err := c.cc.Invoke(ctx, "/smartdev0328.bluechip.pageinflation.Query/MintDenom", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/BlueChip23.bluechip.pageinflation.Query/MintDenom", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -454,7 +454,7 @@ func (c *queryClient) MintDenom(ctx context.Context, in *QueryGetMintDenomReques
 
 func (c *queryClient) StartBlock(ctx context.Context, in *QueryGetStartBlockRequest, opts ...grpc.CallOption) (*QueryGetStartBlockResponse, error) {
 	out := new(QueryGetStartBlockResponse)
-	err := c.cc.Invoke(ctx, "/smartdev0328.bluechip.pageinflation.Query/StartBlock", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/BlueChip23.bluechip.pageinflation.Query/StartBlock", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -463,7 +463,7 @@ func (c *queryClient) StartBlock(ctx context.Context, in *QueryGetStartBlockRequ
 
 func (c *queryClient) MintedPool(ctx context.Context, in *QueryGetMintedPoolRequest, opts ...grpc.CallOption) (*QueryGetMintedPoolResponse, error) {
 	out := new(QueryGetMintedPoolResponse)
-	err := c.cc.Invoke(ctx, "/smartdev0328.bluechip.pageinflation.Query/MintedPool", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/BlueChip23.bluechip.pageinflation.Query/MintedPool", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -513,7 +513,7 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/smartdev0328.bluechip.pageinflation.Query/Params",
+		FullMethod: "/BlueChip23.bluechip.pageinflation.Query/Params",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(QueryServer).Params(ctx, req.(*QueryParamsRequest))
@@ -531,7 +531,7 @@ func _Query_MintDenom_Handler(srv interface{}, ctx context.Context, dec func(int
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/smartdev0328.bluechip.pageinflation.Query/MintDenom",
+		FullMethod: "/BlueChip23.bluechip.pageinflation.Query/MintDenom",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(QueryServer).MintDenom(ctx, req.(*QueryGetMintDenomRequest))
@@ -549,7 +549,7 @@ func _Query_StartBlock_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/smartdev0328.bluechip.pageinflation.Query/StartBlock",
+		FullMethod: "/BlueChip23.bluechip.pageinflation.Query/StartBlock",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(QueryServer).StartBlock(ctx, req.(*QueryGetStartBlockRequest))
@@ -567,7 +567,7 @@ func _Query_MintedPool_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/smartdev0328.bluechip.pageinflation.Query/MintedPool",
+		FullMethod: "/BlueChip23.bluechip.pageinflation.Query/MintedPool",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(QueryServer).MintedPool(ctx, req.(*QueryGetMintedPoolRequest))
@@ -576,7 +576,7 @@ func _Query_MintedPool_Handler(srv interface{}, ctx context.Context, dec func(in
 }
 
 var _Query_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "smartdev0328.bluechip.pageinflation.Query",
+	ServiceName: "BlueChip23.bluechip.pageinflation.Query",
 	HandlerType: (*QueryServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

@@ -6,9 +6,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/Smartdev0328/bluechip/app"
-	"github.com/Smartdev0328/bluechip/x/mint/simulation"
-	"github.com/Smartdev0328/bluechip/x/mint/types"
+	"github.com/BlueChip23/bluechip/app"
+	"github.com/BlueChip23/bluechip/x/mint/simulation"
+	"github.com/BlueChip23/bluechip/x/mint/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/kv"
 )

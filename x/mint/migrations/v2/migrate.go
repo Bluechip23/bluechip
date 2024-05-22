@@ -1,7 +1,7 @@
 package v2
 
 import (
-	"github.com/Smartdev0328/bluechip/x/mint/types"
+	"github.com/BlueChip23/bluechip/x/mint/types"
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )

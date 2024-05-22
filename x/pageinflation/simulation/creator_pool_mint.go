@@ -3,8 +3,8 @@ package simulation
 import (
 	"math/rand"
 
-	"github.com/Smartdev0328/bluechip/x/pageinflation/keeper"
-	"github.com/Smartdev0328/bluechip/x/pageinflation/types"
+	"github.com/BlueChip23/bluechip/x/pageinflation/keeper"
+	"github.com/BlueChip23/bluechip/x/pageinflation/types"
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"

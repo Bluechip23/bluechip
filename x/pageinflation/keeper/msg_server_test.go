@@ -4,9 +4,9 @@ import (
 	"context"
 	"testing"
 
-	keepertest "github.com/Smartdev0328/bluechip/testutil/keeper"
-	"github.com/Smartdev0328/bluechip/x/pageinflation/keeper"
-	"github.com/Smartdev0328/bluechip/x/pageinflation/types"
+	keepertest "github.com/BlueChip23/bluechip/testutil/keeper"
+	"github.com/BlueChip23/bluechip/x/pageinflation/keeper"
+	"github.com/BlueChip23/bluechip/x/pageinflation/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 

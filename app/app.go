@@ -17,10 +17,10 @@ import (
 	tmos "github.com/tendermint/tendermint/libs/os"
 	dbm "github.com/tendermint/tm-db"
 
-	"github.com/Smartdev0328/bluechip/docs"
-	"github.com/Smartdev0328/bluechip/x/mint"
-	mintkeeper "github.com/Smartdev0328/bluechip/x/mint/keeper"
-	minttypes "github.com/Smartdev0328/bluechip/x/mint/types"
+	"github.com/BlueChip23/bluechip/docs"
+	"github.com/BlueChip23/bluechip/x/mint"
+	mintkeeper "github.com/BlueChip23/bluechip/x/mint/keeper"
+	minttypes "github.com/BlueChip23/bluechip/x/mint/types"
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/client/grpc/tmservice"
 	"github.com/cosmos/cosmos-sdk/client/rpc"
@@ -108,11 +108,11 @@ import (
 	icahosttypes "github.com/cosmos/ibc-go/v3/modules/apps/27-interchain-accounts/host/types"
 	icatypes "github.com/cosmos/ibc-go/v3/modules/apps/27-interchain-accounts/types"
 
-	encparams "github.com/Smartdev0328/bluechip/app/params"
+	encparams "github.com/BlueChip23/bluechip/app/params"
 
-	pageinflationmodule "github.com/Smartdev0328/bluechip/x/pageinflation"
-	pageinflationmodulekeeper "github.com/Smartdev0328/bluechip/x/pageinflation/keeper"
-	pageinflationmoduletypes "github.com/Smartdev0328/bluechip/x/pageinflation/types"
+	pageinflationmodule "github.com/BlueChip23/bluechip/x/pageinflation"
+	pageinflationmodulekeeper "github.com/BlueChip23/bluechip/x/pageinflation/keeper"
+	pageinflationmoduletypes "github.com/BlueChip23/bluechip/x/pageinflation/types"
 )
 
 const (

@@ -8,8 +8,8 @@ import (
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 	dbm "github.com/tendermint/tm-db"
 
-	bluechipapp "github.com/Smartdev0328/bluechip/app"
-	"github.com/Smartdev0328/bluechip/x/mint/types"
+	bluechipapp "github.com/BlueChip23/bluechip/app"
+	"github.com/BlueChip23/bluechip/x/mint/types"
 	"github.com/cosmos/cosmos-sdk/simapp"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
