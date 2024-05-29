@@ -1,4 +1,4 @@
-# Junø
+# BlueChip
 
 ❗️For issue disclosure, check out [SECURITY.md](./SECURITY.md) ❗️
 
