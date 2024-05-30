@@ -450,8 +450,6 @@ func New(
 	evidenceKeeper := evidencekeeper.NewKeeper(
 		appCodec, keys[evidencetypes.StoreKey], &app.StakingKeeper, app.SlashingKeeper,
 	)
-	// If evidence needs to be handled for the app, set routes in router here and seal
-	app.EvidenceKeeper = *evidenceKeeper
 
 	// this line is used by starport scaffolding # stargate/app/keeperDefinition
 	wasmDir := filepath.Join(homePath, "data")
@@ -507,8 +505,13 @@ func New(
 		AddRoute(wasm.ModuleName, wasm.NewIBCHandler(app.wasmKeeper, app.IBCKeeper.ChannelKeeper)).
 		AddRoute(icahosttypes.SubModuleName, icaHostIBCModule)
 	app.IBCKeeper.SetRouter(ibcRouter)
-
-	app.GovKeeper = govkeeper.NewKeeper(
+	 evidenceRouter := evidencetypes.NewRouter().
+	
+    // add IBC ClientMisbehaviour evidence handler
+    AddRoute(ibcclient.RouterKey, ibcclient.HandlerClientMisbehaviour(app.IBCKeeper.ClientKeeper))
+ 	 evidenceKeeper.SetRouter(evidenceRouter)
+ 	 app.EvidenceKeeper = *evidenceKeeper
+	 app.GovKeeper = govkeeper.NewKeeper(
 		appCodec, keys[govtypes.StoreKey], app.GetSubspace(govtypes.ModuleName), app.AccountKeeper, app.BankKeeper,
 		&stakingKeeper, govRouter,
 	)
