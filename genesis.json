@@ -1,6 +1,6 @@
 {
   "genesis_time": "2023-05-23T20:20:57.77307748Z",
-  "chain_id": "bluechip_1",
+  "chain_id": "bluechip-1",
   "initial_height": "1",
   "consensus_params": {
     "block": {
