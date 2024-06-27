@@ -39,7 +39,7 @@ export PATH=$PATH:/home/ubuntu/go/bin
 ## initialize the chain.
 
 ```
-bluechipd init --chain-id=bluechip_1 validator1
+bluechipd init --chain-id=bluechip-1 validator1
 ```
 
 ## add genesis accounts - backend accout and first validator account
