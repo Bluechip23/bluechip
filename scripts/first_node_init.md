@@ -58,7 +58,7 @@ echo "<seed words>" | bluechipd keys add backend_account --keyring-backend test 
 
 bluechipd add-genesis-account $(bluechipd keys show backend_account -a --keyring-backend test) 30000000000000ubluechip
 
-bluechipd gentx validator1 50000000ubluechip --keyring-backend test --chain-id bluechip_1
+bluechipd gentx validator1 50000000ubluechip --keyring-backend test --chain-id bluechip-1
 
 bluechipd collect-gentxs 
 sed -i 's/stake/ubluechip/g' ~/.bluechip/config/genesis.json
