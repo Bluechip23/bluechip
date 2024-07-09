@@ -12,8 +12,7 @@ git fetch
 
 git checkout <version-tag>
 
-
-# Once you find the correct tag, you can then complete installation.
+Once you find the correct tag, you can then complete installation.
 
 # Make you are in the bluechip directory
 
@@ -23,7 +22,7 @@ make install
 
 bluechipd version
 
-# It is important to have a sufficient machine to run a validating node.
+It is important to have a sufficient machine to run a validating node.
 
 # The minimum recommended hardware requirements for running a validator for the BlueChip mainnet are:
 
@@ -33,7 +32,7 @@ bluechipd version
 
 1TB of storage (SSD or NVME)
 
-# BlueChip is a young and growing chain. As more smart contracts and history develop, these requirements may need upgrading.
+BlueChip is a young and growing chain. As more smart contracts and history develop, these requirements may need upgrading.
 
 # Set the required mainnet chain-id
 
@@ -65,7 +64,7 @@ wget https://raw.githubusercontent.com/Bluechip23/bluechip/main/genesis.json
 mv bluechip-genesis.json $HOME/.bluechip/config/genesis.json
 
 
-# By running this you will replace the genesis file you previously created with the one belonging to the mainnet.
+By running this you will replace the genesis file you previously created with the one belonging to the mainnet.
 
 
 # If you are a validator node, please set a minimum gas price in your app.toml file. Gas fees are paid in blue chips:
@@ -80,7 +79,7 @@ or
 
 bluechipd keys add <key-name> --recover
 
-# Note: you will be prompted to input your mnemonic seed phrase
+*Note: you will be prompted to input your mnemonic seed phrase
 
 # Query the keystore for your public address
 
@@ -88,17 +87,19 @@ bluechipd keys show <key-name> -a
 
 # You can name your key a specific name by replacing <key-name> with your chosen name
 
-# *NOTE: please write your seed phrase down and store it securely. It will be the only way you can access your keys in the future.
+*NOTE: please write your seed phrase down and store it securely. It will be the only way you can access your keys in the future.
 
-# Now keys are set up, you are able to obtain blue chips, have them bonded to your node, and begin validating. Either find people who are willing to delegate to you, or you will need to purchase blue chips on the open market. 
+# Now keys are set up, you are able to obtain blue chips, have them bonded to your node, and begin validating. Either find people who are willing to delegate to you, or you will need to purchase blue chips on the open market.
 
-# Once you have blue chips you are then able to begin syncing to the chain via the genesis file. 
+Once you have blue chips you are then able to begin syncing to the chain via the genesis file. 
 
-# After running the bluechipd daemon, the chain will begin to sync to the network. The time to sync to the network will vary depending on your setup and the current size of the blockchain. To query the status of your node:
+After running the bluechipd daemon, the chain will begin to sync to the network. The time to sync to the network will vary depending on your setup and the current size of the blockchain. 
+
+To query the status of your node:
 
 curl http://localhost:26657/status | jq .result.sync_info.catching_up
 
-# If the following command returns true then your node is still catching up. If it returns false then your node has caught up to the network current block and you are safe to proceed to upgrade to a validator node.
+If the following command returns true then your node is still catching up. If it returns false then your node has caught up to the network current block and you are safe to proceed to upgrade to a validator node.
 
 # Once your node is caught up, you are able upgrade your node to a validator.
 
