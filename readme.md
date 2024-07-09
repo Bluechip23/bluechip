@@ -70,7 +70,7 @@ mv bluechip-genesis.json $HOME/.bluechip/config/genesis.json
 
 # If you are a validator node, please set a minimum gas price in your app.toml file. Gas fees are paid in blue chips:
 
-sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0025ubluechip,\/C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9\"/" ~/.bluechip/config/app.toml
+sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0025ubluechip,\ ~/.bluechip/config/app.toml
 
 # Once your basic node parameters are set, you can now create a new key pair or restore one.
 
