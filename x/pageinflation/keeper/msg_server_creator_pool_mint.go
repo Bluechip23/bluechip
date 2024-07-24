@@ -36,12 +36,14 @@ func (k msgServer) CreatorPoolMint(goCtx context.Context, msg *types.MsgCreatorP
 	mintedPool := storeMintedPool.Value
 
 	///calculate the next mintedAmount
-	numerator := float64(0.0064179)*math.Pow(float64(mintedPool), float64(2)) + float64(mintedPool)
-	denominator := math.Pow(float64(uint64(currentBlock)-startBlock), float64(1)/float64(1.569)) +
-		1200*math.Pow(float64(1.012), float64(mintedPool)/float64(-25))
-	mintedAmount := sdk.NewDec(int64(1200000000 - uint64(numerator*1000000/denominator)))
+	numerator := float64(5)*math.Pow(float64(mintedPool), float64(2)) + float64(mintedPool)
+	tokenSupplySinceCreatorOne := uint64(currentBlock - startBlock)
+	denominator := float64(tokenSupplySinceCreatorOne) + 333*float64(mintedPool)
+	mintedAmount := sdk.NewDec(int64(500000000 - uint64(numerator*1000000/denominator)))
 	mintedCoin := sdk.NewCoin(mintDenom, mintedAmount.TruncateInt())
 	coins := sdk.NewCoins(mintedCoin)
+
+
 
 	if coins.Empty() {
 		panic("err")
