@@ -1,5 +1,5 @@
 syntax = "proto3";
-package BlueChip23.bluechip.pageinflation;
+package bluechip.pageinflation;
 
 import "gogoproto/gogo.proto";
 

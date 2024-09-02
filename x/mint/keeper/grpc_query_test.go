@@ -4,8 +4,8 @@ import (
 	gocontext "context"
 	"testing"
 
+	tmproto "github.com/cometbft/cometbft/proto/tendermint/types"
 	"github.com/stretchr/testify/suite"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
 	"github.com/BlueChip23/bluechip/app"
 	"github.com/BlueChip23/bluechip/x/mint/types"
@@ -22,7 +22,7 @@ type MintTestSuite struct {
 }
 
 func (suite *MintTestSuite) SetupTest() {
-	app := setup(false)
+	app := app.Setup(false)
 	ctx := app.BaseApp.NewContext(false, tmproto.Header{})
 
 	queryHelper := baseapp.NewQueryServerTestHelper(ctx, app.InterfaceRegistry())

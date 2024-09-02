@@ -1,15 +1,20 @@
 package app
 
 import (
+	"math"
+
 	"github.com/cosmos/cosmos-sdk/codec"
+	storetypes "github.com/cosmos/cosmos-sdk/store/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/cosmos/cosmos-sdk/x/auth/ante"
 	"github.com/cosmos/cosmos-sdk/x/authz"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
-	ibcante "github.com/cosmos/ibc-go/v3/modules/core/ante"
-	ibckeeper "github.com/cosmos/ibc-go/v3/modules/core/keeper"
+	ibcante "github.com/cosmos/ibc-go/v7/modules/core/ante"
+	ibckeeper "github.com/cosmos/ibc-go/v7/modules/core/keeper"
 
+	errorsmod "cosmossdk.io/errors"
+	sdkmath "cosmossdk.io/math"
 	wasmkeeper "github.com/CosmWasm/wasmd/x/wasm/keeper"
 	wasmTypes "github.com/CosmWasm/wasmd/x/wasm/types"
 )
@@ -20,7 +25,7 @@ type HandlerOptions struct {
 	ante.HandlerOptions
 
 	IBCKeeper         *ibckeeper.Keeper
-	TxCounterStoreKey sdk.StoreKey
+	TxCounterStoreKey storetypes.StoreKey
 	WasmConfig        wasmTypes.WasmConfig
 	Cdc               codec.BinaryCodec
 }
@@ -98,6 +103,63 @@ func (min MinCommissionDecorator) AnteHandle(
 	return next(ctx, tx, simulate)
 }
 
+// CheckTxFeeWithValidatorMinGasPrices implements the default fee logic, where the minimum price per
+// unit of gas is fixed and set by each validator, can the tx priority is computed from the gas price.
+func CheckTxFeeWithValidatorMinGasPrices(ctx sdk.Context, tx sdk.Tx) (sdk.Coins, int64, error) {
+	feeTx, ok := tx.(sdk.FeeTx)
+	if !ok {
+		return nil, 0, errorsmod.Wrap(sdkerrors.ErrTxDecode, "Tx must be a FeeTx")
+	}
+
+	feeCoins := feeTx.GetFee()
+	gas := feeTx.GetGas()
+
+	// Ensure that the provided fees meet a minimum threshold for the validator,
+	// if this is a CheckTx. This is only for local mempool purposes, and thus
+	// is only ran on check tx.
+	if ctx.IsCheckTx() {
+		minGasPrices := ctx.MinGasPrices()
+		if !minGasPrices.IsZero() {
+			requiredFees := make(sdk.Coins, len(minGasPrices))
+
+			// Determine the required fees by multiplying each required minimum gas
+			// price by the gas limit, where fee = ceil(minGasPrice * gasLimit).
+			glDec := sdkmath.LegacyNewDec(int64(gas))
+			for i, gp := range minGasPrices {
+				fee := gp.Amount.Mul(glDec)
+				requiredFees[i] = sdk.NewCoin(gp.Denom, fee.Ceil().RoundInt())
+			}
+
+			if !feeCoins.IsAnyGTE(requiredFees) {
+				return nil, 0, errorsmod.Wrapf(sdkerrors.ErrInsufficientFee, "insufficient fees; got: %s required: %s", feeCoins, requiredFees)
+			}
+		}
+	}
+
+	priority := getTxPriority(feeCoins, int64(gas))
+	return feeCoins, priority, nil
+}
+
+// getTxPriority returns a naive tx priority based on the amount of the smallest denomination of the gas price
+// provided in a transaction.
+// NOTE: This implementation should be used with a great consideration as it opens potential attack vectors
+// where txs with multiple coins could not be prioritize as expected.
+func getTxPriority(fee sdk.Coins, gas int64) int64 {
+	var priority int64
+	for _, c := range fee {
+		p := int64(math.MaxInt64)
+		gasPrice := c.Amount.QuoRaw(gas)
+		if gasPrice.IsInt64() {
+			p = gasPrice.Int64()
+		}
+		if priority == 0 || p < priority {
+			priority = p
+		}
+	}
+
+	return priority
+}
+
 // NewAnteHandler returns an AnteHandler that checks and increments sequence
 // numbers, checks signatures & account numbers, and deducts fees from the first
 // signer.
@@ -118,26 +180,28 @@ func NewAnteHandler(options HandlerOptions) (sdk.AnteHandler, error) {
 	if sigGasConsumer == nil {
 		sigGasConsumer = ante.DefaultSigVerificationGasConsumer
 	}
+	txFeeChecker := options.TxFeeChecker
+	if txFeeChecker == nil {
+		txFeeChecker = CheckTxFeeWithValidatorMinGasPrices
+	}
 
 	anteDecorators := []sdk.AnteDecorator{
 		ante.NewSetUpContextDecorator(), // outermost AnteDecorator. SetUpContext must be called first
 		NewMinCommissionDecorator(options.Cdc),
 		wasmkeeper.NewLimitSimulationGasDecorator(options.WasmConfig.SimulationGasLimit),
 		wasmkeeper.NewCountTXDecorator(options.TxCounterStoreKey),
-		ante.NewRejectExtensionOptionsDecorator(),
-		ante.NewMempoolFeeDecorator(),
 		ante.NewValidateBasicDecorator(),
 		ante.NewTxTimeoutHeightDecorator(),
 		ante.NewValidateMemoDecorator(options.AccountKeeper),
 		ante.NewConsumeGasForTxSizeDecorator(options.AccountKeeper),
-		ante.NewDeductFeeDecorator(options.AccountKeeper, options.BankKeeper, options.FeegrantKeeper),
+		ante.NewDeductFeeDecorator(options.AccountKeeper, options.BankKeeper, options.FeegrantKeeper, txFeeChecker),
 		// SetPubKeyDecorator must be called before all signature verification decorators
 		ante.NewSetPubKeyDecorator(options.AccountKeeper),
 		ante.NewValidateSigCountDecorator(options.AccountKeeper),
 		ante.NewSigGasConsumeDecorator(options.AccountKeeper, sigGasConsumer),
 		ante.NewSigVerificationDecorator(options.AccountKeeper, options.SignModeHandler),
 		ante.NewIncrementSequenceDecorator(options.AccountKeeper),
-		ibcante.NewAnteDecorator(options.IBCKeeper),
+		ibcante.NewRedundantRelayDecorator(options.IBCKeeper),
 	}
 
 	return sdk.ChainAnteDecorators(anteDecorators...), nil
