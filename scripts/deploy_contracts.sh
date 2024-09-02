@@ -6,7 +6,7 @@
 # NOTE: you will need to update these to deploy on different network
 BINARY='bluechipd'
 DENOM='ubluechip'
-CHAIN_ID='bluechip-1'
+CHAIN_ID='bluechip-2'
 RPC='http://localhost:26657/'
 REST='http://localhost:1317/'
 TXFLAG="--gas-prices 0.025$DENOM --gas auto --gas-adjustment 1.3 -y -b block --chain-id $CHAIN_ID --node $RPC"
