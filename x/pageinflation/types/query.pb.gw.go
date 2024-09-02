@@ -328,13 +328,13 @@ func RegisterQueryHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 }
 
 var (
-	pattern_Query_Params_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"BlueChip23", "bluechip", "pageinflation", "params"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_Params_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"BlueChip23", "bluechip", "pageinflation", "params"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_MintDenom_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"BlueChip23", "bluechip", "pageinflation", "mint_denom"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_MintDenom_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"BlueChip23", "bluechip", "pageinflation", "mint_denom"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_StartBlock_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"BlueChip23", "bluechip", "pageinflation", "start_block"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_StartBlock_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"BlueChip23", "bluechip", "pageinflation", "start_block"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_MintedPool_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"BlueChip23", "bluechip", "pageinflation", "minted_pool"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_MintedPool_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"BlueChip23", "bluechip", "pageinflation", "minted_pool"}, "", runtime.AssumeColonVerbOpt(false)))
 )
 
 var (

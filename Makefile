@@ -100,11 +100,10 @@ build:
 ###                                  Proto                                  ###
 ###############################################################################
 
-protoVer=v0.7
-protoImageName=tendermintdev/sdk-proto-gen:$(protoVer)
-containerProtoGen=bluechip-proto-gen-$(protoVer)
+protoVer=0.11.5
+protoImageName=ghcr.io/cosmos/proto-builder:$(protoVer)
+protoImage=$(DOCKER) run --rm -u $(id -u):$(id -g) -v $(CURDIR):/workspace --workdir /workspace $(protoImageName)
 
 proto-gen:
 	@echo "Generating Protobuf files"
-	@if docker ps -a --format '{{.Names}}' | grep -Eq "^${containerProtoGen}$$"; then docker start -a $(containerProtoGen); else docker run --name $(containerProtoGen) -v $(CURDIR):/workspace --workdir /workspace $(protoImageName) \
-		sh ./scripts/protocgen.sh; fi
+	@$(protoImage) sh ./scripts/protocgen.sh
