@@ -3,14 +3,14 @@ package keeper_test
 import (
 	"encoding/json"
 
-	abci "github.com/tendermint/tendermint/abci/types"
-	"github.com/tendermint/tendermint/libs/log"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	dbm "github.com/tendermint/tm-db"
+	dbm "github.com/cometbft/cometbft-db"
+	abci "github.com/cometbft/cometbft/abci/types"
+	"github.com/cometbft/cometbft/libs/log"
+	tmproto "github.com/cometbft/cometbft/proto/tendermint/types"
 
 	bluechipapp "github.com/BlueChip23/bluechip/app"
 	"github.com/BlueChip23/bluechip/x/mint/types"
-	"github.com/cosmos/cosmos-sdk/simapp"
+	simtestutil "github.com/cosmos/cosmos-sdk/testutil/sims"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
@@ -38,7 +38,7 @@ func setup(isCheckTx bool) *bluechipapp.App {
 		app.InitChain(
 			abci.RequestInitChain{
 				Validators:      []abci.ValidatorUpdate{},
-				ConsensusParams: simapp.DefaultConsensusParams,
+				ConsensusParams: simtestutil.DefaultConsensusParams,
 				AppStateBytes:   stateBytes,
 			},
 		)
@@ -56,12 +56,12 @@ func genApp(withGenesis bool, invCheckPeriod uint) (*bluechipapp.App, bluechipap
 		nil,
 		true,
 		map[int64]bool{},
-		simapp.DefaultNodeHome,
+		simtestutil.DefaultNodeHome,
 		invCheckPeriod,
 		encCdc,
 		bluechipapp.GetEnabledProposals(),
-		simapp.EmptyAppOptions{},
-		bluechipapp.GetWasmOpts(simapp.EmptyAppOptions{}),
+		simtestutil.EmptyAppOptions{},
+		bluechipapp.GetWasmOpts(simtestutil.EmptyAppOptions{}),
 	)
 
 	if withGenesis {
