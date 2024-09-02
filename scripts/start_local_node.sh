@@ -33,7 +33,7 @@ fi
 
 echo "Initializing genesis node..."
 
-cd $BLUE_CHIP_REPO && COSMOS_BUILD_OPTIONS=nostrip && make install
+cd $BLUE_CHIP_REPO && make install
 bluechipd init --chain-id bluechip-1 validator1 --home $HOME_DIR
 echo "pet apart myth reflect stuff force attract taste caught fit exact ice slide sheriff state since unusual gaze practice course mesh magnet ozone purchase" | bluechipd keys add validator1 --keyring-backend test --recover --home $HOME_DIR
 echo "bottom soccer blue sniff use improve rough use amateur senior transfer quarter" | bluechipd keys add validator2 --keyring-backend test --recover --home $HOME_DIR

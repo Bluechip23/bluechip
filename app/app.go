@@ -342,11 +342,11 @@ func New(
 	bApp.SetInterfaceRegistry(interfaceRegistry)
 
 	keys := sdk.NewKVStoreKeys(
-		authtypes.StoreKey, banktypes.StoreKey, stakingtypes.StoreKey,
-		minttypes.StoreKey, distrtypes.StoreKey, slashingtypes.StoreKey,
+		authtypes.StoreKey, authz.ModuleName, banktypes.StoreKey, stakingtypes.StoreKey,
+		crisistypes.StoreKey, minttypes.StoreKey, distrtypes.StoreKey, slashingtypes.StoreKey,
 		govtypes.StoreKey, paramstypes.StoreKey, ibcexported.StoreKey, upgradetypes.StoreKey,
 		evidencetypes.StoreKey, ibctransfertypes.StoreKey, capabilitytypes.StoreKey,
-		authzkeeper.StoreKey, feegrant.StoreKey, icahosttypes.StoreKey, icacontrollertypes.StoreKey,
+		feegrant.StoreKey, icahosttypes.StoreKey, icacontrollertypes.StoreKey,
 		wasm.StoreKey,
 		consensusparamtypes.StoreKey,
 		pageinflationmoduletypes.StoreKey,
@@ -739,9 +739,9 @@ func New(
 	}
 
 	// initialize BaseApp
+	app.SetAnteHandler(anteHandler)
 	app.SetInitChainer(app.InitChainer)
 	app.SetBeginBlocker(app.BeginBlocker)
-	app.SetAnteHandler(anteHandler)
 	app.SetEndBlocker(app.EndBlocker)
 
 	if manager := app.SnapshotManager(); manager != nil {
