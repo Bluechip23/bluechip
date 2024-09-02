@@ -7,6 +7,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"strings"
 	"time"
 
 	dbm "github.com/cometbft/cometbft-db"
@@ -40,6 +41,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/spf13/cast"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 
 	"github.com/BlueChip23/bluechip/app"
 	"github.com/BlueChip23/bluechip/app/params"
@@ -78,7 +80,7 @@ func initAppConfig() (string, interface{}) {
 	//   own app.toml to override, or use this default value.
 	//
 	// In simapp, we set the min gas prices to 0.
-	srvCfg.MinGasPrices = "0stake"
+	srvCfg.MinGasPrices = "0ubluechip"
 	// srvCfg.BaseConfig.IAVLDisableFastNode = true // disable fastnode by default
 	customAppConfig := CustomAppConfig{
 		Config: *srvCfg,
@@ -150,8 +152,28 @@ func NewRootCmd() (*cobra.Command, params.EncodingConfig) {
 	}
 
 	initRootCmd(rootCmd, encodingConfig)
+	overwriteFlagDefaults(rootCmd, map[string]string{
+		flags.FlagChainID:        strings.ReplaceAll(app.Name, "-", ""),
+		flags.FlagKeyringBackend: "test",
+	})
 
 	return rootCmd, encodingConfig
+}
+
+func overwriteFlagDefaults(c *cobra.Command, defaults map[string]string) {
+	set := func(s *pflag.FlagSet, key, val string) {
+		if f := s.Lookup(key); f != nil {
+			f.DefValue = val
+			f.Value.Set(val)
+		}
+	}
+	for key, val := range defaults {
+		set(c.Flags(), key, val)
+		set(c.PersistentFlags(), key, val)
+	}
+	for _, c := range c.Commands() {
+		overwriteFlagDefaults(c, defaults)
+	}
 }
 
 func initRootCmd(rootCmd *cobra.Command, encodingConfig params.EncodingConfig) {
@@ -302,7 +324,7 @@ func NodeIDCommand() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			cmd.Println("Node ID:", status.NodeInfo.ID)
+			cmd.Println("Node ID:", status.NodeInfo.ID())
 			return nil
 		},
 	}
