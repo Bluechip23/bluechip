@@ -56,7 +56,7 @@ func genApp(withGenesis bool, invCheckPeriod uint) (*bluechipapp.App, bluechipap
 		nil,
 		true,
 		map[int64]bool{},
-		simtestutil.DefaultNodeHome,
+		bluechipapp.DefaultNodeHome,
 		invCheckPeriod,
 		encCdc,
 		bluechipapp.GetEnabledProposals(),

@@ -37,7 +37,7 @@ func BeginBlocker(ctx sdk.Context, k keeper.Keeper) {
 		//minter.Inflation = newInflation
 		minter.Phase = nextPhase
 		minter.StartPhaseBlock = currentBlock
-		minter.Inflation = newInflation.Mul(sdk.NewDec(100)).Quo(totalSupply.ToDec())
+		minter.Inflation = newInflation.Mul(sdk.NewDec(100)).Quo(totalSupply.ToLegacyDec())
 		minter.AnnualProvisions = newInflation
 		minter.TargetSupply = totalSupply.Add(minter.AnnualProvisions.TruncateInt())
 		k.SetMinter(ctx, minter)
