@@ -1,9 +1,9 @@
 syntax = "proto3";
-package BlueChip23.bluechip.pageinflation;
+package bluechip.pageinflation;
 
 option go_package = "github.com/BlueChip23/bluechip/x/pageinflation/types";
 
-message MintedPool {
-  uint64 value = 1; 
+message MintDenom {
+  string value = 1; 
   
 }

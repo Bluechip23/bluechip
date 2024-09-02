@@ -1,8 +1,8 @@
 syntax = "proto3";
-package BlueChip23.bluechip.mint;
+package bluechip.mint;
 
 import "gogoproto/gogo.proto";
-import "mint/mint.proto";
+import "bluechip/mint/mint.proto";
 
 option go_package = "github.com/BlueChip23/bluechip/x/mint/types";
 
