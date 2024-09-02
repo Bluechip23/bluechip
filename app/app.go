@@ -238,6 +238,7 @@ var (
 		transfer.AppModuleBasic{},
 		vesting.AppModuleBasic{},
 		authzmodule.AppModuleBasic{},
+		genutil.NewAppModuleBasic(genutiltypes.DefaultMessageValidator),
 		wasm.AppModuleBasic{},
 		ica.AppModuleBasic{},
 		pageinflationmodule.AppModuleBasic{},
