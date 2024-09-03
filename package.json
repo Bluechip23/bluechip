@@ -1,0 +1,14 @@
+{
+  "name": "bluechip",
+  "version": "1.0.0",
+  "description": "This assumes that you have go and a proper operating system installed to your machine. If you need to install go, do so here: https://go.dev/doc/install",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nick",
+  "license": "ISC"
+}

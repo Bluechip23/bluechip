@@ -1,12 +1,21 @@
-vue/node_modules
-vue/dist
+# Node modules and build outputs
+vue/node_modules/
+vue/dist/
+bin/
+
+# Configuration files
 secret.yml
 cosmoshub3.json
 exchanges.json
 bluechip_out.json
-bin
-.vscode
 
-# emacs editor config
-\#*\#
+# IDE configurations
+.vscode/
+
+# Package files
+package.json
+package-lock.json
+
+# Editor temporary files
+#*#
 .\#*
