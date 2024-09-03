@@ -1,7 +1,7 @@
 # Bluechip
 # Become a Validator
 This assumes that you have go and a proper operating system installed to your machine. If you need to install go, do so here: https://go.dev/doc/install
-*Please note, if you see bluechip_1 in any of our documentation, please use bluechip-1 instead. We have updated our chainID.
+
 Once everything is installed, you will need to build the BlueChip binary:
 # from $HOME dir
 git clone https://github.com/Bluechip23/bluechip
@@ -36,7 +36,7 @@ BlueChip is a young and growing chain. As more smart contracts and history devel
 
 # Set the required mainnet chain-id
 
-CHAIN_ID=bluechip-1 
+CHAIN_ID=bluechip-2
 
 
 # Please decide what you would like your validator to be named:
