@@ -52231,7 +52231,7 @@ definitions:
             format: uint64
             title: expected blocks per year
     description: QueryParamsResponse is the response type for the Query/Params RPC method.
- BlueChip23.bluechip.pageinflation.MintDenom:
+  BlueChip23.bluechip.pageinflation.MintDenom:
     type: object
     properties:
       value:
