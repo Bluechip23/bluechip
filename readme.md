@@ -69,7 +69,7 @@ By running this you will replace the genesis file you previously created with th
 # Obtain Necessary Seeds
 Set the seeds from the BlueChip network in your config file to allow proper node communication.
 
-CHAIN_REPO="https://raw.githubusercontent.com/BlueChip23/bluechip/main/$CHAIN_ID" && \
+CHAIN_REPO="https://raw.githubusercontent.com/BlueChip23/bluechip/main" && \
 export SEEDS="$(curl -sL "$CHAIN_REPO/seeds.txt")"
 
 # Set seeds in your newly created config file
