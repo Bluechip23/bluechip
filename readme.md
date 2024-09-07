@@ -66,6 +66,14 @@ mv bluechip-genesis.json $HOME/.bluechip/config/genesis.json
 
 By running this you will replace the genesis file you previously created with the one belonging to the mainnet.
 
+# Obtain Necessary Seeds
+Set the seeds from the BlueChip network in your config file to allow proper node communication.
+
+CHAIN_REPO="https://raw.githubusercontent.com/BlueChip23/bluechip/main/$CHAIN_ID" && \
+export SEEDS="$(curl -sL "$CHAIN_REPO/seeds.txt")"
+
+# Set seeds in your newly created config file
+sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" ~/.bluechip/config/config.toml
 
 # If you are a validator node, please set a minimum gas price in your app.toml file. Gas fees are paid in blue chips:
 
