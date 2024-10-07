@@ -1,142 +1,143 @@
 # Bluechip
-# Become a Validator
-This assumes that you have go and a proper operating system installed to your machine. If you need to install go, do so here: https://go.dev/doc/install
+To install and run the BlueChip binary the following guide is applicable. Follow the steps and create your node.
 
-Once everything is installed, you will need to build the BlueChip binary:
-# from $HOME dir
-git clone https://github.com/Bluechip23/bluechip
+## Install dependencies
+```
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get install -y build-essential curl wget jq make gcc chrony git
+sudo su -c "echo 'fs.file-max = 65536' >> /etc/sysctl.conf"
+sudo sysctl -p
+```
 
+## Install go
+```
+sudo rm -rf /usr/local/.go
+wget https://go.dev/dl/go1.21.5.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go1.21.5.linux-amd64.tar.gz
+sudo cp /usr/local/go /usr/local/.go -r
+sudo rm -rf /usr/local/go
+```
+
+## Update environment variables to include go
+```
+cat <<'EOF' >>$HOME/.profile
+export GOROOT=/usr/local/.go
+export GOPATH=$HOME/go
+export GO111MODULE=on
+export PATH=$PATH:/usr/local/.go/bin:$HOME/go/bin
+EOF
+source $HOME/.profile
+
+go version
+```
+The last command should return something like go version go1.16.4 linux/amd64.
+
+## Install the binary
+```
+git clone https://github.com/Bluechip23/bluechip.git
 cd bluechip
-
 git fetch
-
-git checkout <version-tag>
-
-Once you find the correct tag, you can then complete installation.
-
-# Make you are in the bluechip directory
-
+git checkout
 make install
 
-# Confirm installation:
-
 bluechipd version
+```
+The last command should return the bluechip binary version.
 
-It is important to have a sufficient machine to run a validating node.
+## Configure the node
+Add an address:
+```
+bluechipd keys add <key-name> 
+```
 
-# The minimum recommended hardware requirements for running a validator for the BlueChip mainnet are:
+Add the chain-id:
+```
+bluechipd config chain-id bluechip-2
+```
 
-4 Cores (modern CPU's)
+Set the name of your node:
+```
+bluechipd init <your_custom_moniker> --chain-id bluechip-2
+```
 
-32GB RAM
+Download the genesis file:
+```
+curl https://raw.githubusercontent.com/Bluechip23/bluechip/main/genesis.json > ~/.bluechipd/config/genesis.json
+```
 
-1TB of storage (SSD or NVME)
-
-BlueChip is a young and growing chain. As more smart contracts and history develop, these requirements may need upgrading.
-
-# Set the required mainnet chain-id
-
-CHAIN_ID=bluechip-2
-
-
-# Please decide what you would like your validator to be named:
-
-MONIKER_NAME=<moniker-name>
-
-# Initialize chain:
-
-bluechipd init "$MONIKER_NAME" --chain-id $CHAIN_ID
-
-# This will generate the following files in ~/.bluechip/config/
-
-genesis.json
-
-node_key.json
-
-priv_validator_key.json
-
-# Once you have these files, you will then need to download the genesis.json file:
-
-rm ~/.bluechip/config/genesis.json
-
-wget https://raw.githubusercontent.com/Bluechip23/bluechip/main/genesis.json
-
-mv bluechip-genesis.json $HOME/.bluechip/config/genesis.json
-
-
-By running this you will replace the genesis file you previously created with the one belonging to the mainnet.
-
-# Find Peers For Network
-Find Peers from the BlueChip network and place them in your config file to allow proper node communication.
-
+Set the peers in your config.toml. Find peers for the network and place them in your config file to allow proper node communication.
+```
 CHAIN_REPO="https://raw.githubusercontent.com/BlueChip23/bluechip/main" && \
 export PEERS="$(curl -sL "$CHAIN_REPO/peers.txt")"
+```
 
-# Set peers in your newly created config file
+Set peers in your newly created config file
+```
 sed -i.bak -e "s/^peers *=.*/peers = \"$PEERS\"/" ~/.bluechip/config/config.toml
+```
 
-# If you are a validator node, please set a minimum gas price in your app.toml file. Gas fees are paid in blue chips:
-
+Set a minimum gas price in your app.toml file. Gas fees are paid in blue chips:
+```
 sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0025ubluechip,\ ~/.bluechip/config/app.toml
+```
 
-# Once your basic node parameters are set, you can now create a new key pair or restore one.
+## Create a service file
+```
+sudo tee /etc/systemd/system/bluechipd.service > /dev/null <<EOF  
+[Unit]
+Description=Bluechip Daemon
+After=network-online.target
 
-bluechipd keys add <key-name>
+[Service]
+User=$USER
+ExecStart=$(which bluechipd) start
+Restart=always
+RestartSec=3
+LimitNOFILE=65535
 
-or
+[Install]
+WantedBy=multi-user.target
+EOF
 
-bluechipd keys add <key-name> --recover
+bluechipd tendermint unsafe-reset-all --home $HOME/.bluechipd --keep-addr-book
 
-*Note: you will be prompted to input your mnemonic seed phrase
+sudo mv /etc/systemd/system/bluechipd.service /lib/systemd/system/
+sudo -S systemctl daemon-reload
+sudo -S systemctl enable bluechipd
+```
 
-# Query the keystore for your public address
+## Start the binary
+```
+sudo service bluechipd start
+```
 
-bluechipd keys show <key-name> -a
+Monitor the logs of the binary:
+```
+sudo journalctl -u bluechipd -f
+```
 
-# You can name your key a specific name by replacing <key-name> with your chosen name
-
-*NOTE: please write your seed phrase down and store it securely. It will be the only way you can access your keys in the future.
-
-# Now keys are set up, you are able to obtain blue chips, have them bonded to your node, and begin validating. Either find people who are willing to delegate to you, or you will need to purchase blue chips on the open market.
-
-Once you have blue chips you are then able to begin syncing to the chain via the genesis file. 
-
-After running the bluechipd daemon, the chain will begin to sync to the network. The time to sync to the network will vary depending on your setup and the current size of the blockchain. 
-
-To query the status of your node:
-
+To see if your node is caught up:
+```
 curl http://localhost:26657/status | jq .result.sync_info.catching_up
-
+```
 If the following command returns true then your node is still catching up. If it returns false then your node has caught up to the network current block and you are safe to proceed to upgrade to a validator node.
 
-# Once your node is caught up, you are able upgrade your node to a validator.
-
+## Start the validator node
+If your node is caught up, you can create a validator node:
+```
 bluechipd tx staking create-validator 
-
   --amount 1000000ubluechip 
-  
   --commission-max-change-rate "0.1" 
-  
   --commission-max-rate "0.20" 
-  
   --commission-rate "0.1" 
-  
   --min-self-delegation "1" 
-  
   --details "validators write bios too" 
-  
   --pubkey=$(bluechipd tendermint show-validator) 
-  
   --moniker "$MONIKER_NAME" 
-  
-  --chain-id $CHAIN_ID 
-  
+  --chain-id bluechip-2
   --gas-prices 0.025ubluechip 
-  
   --from <key-name>
+```
 
-If you would like to supply more information you can run the command below for more flags: 
-bluechipd tx staking create-validator --help
-
-
-It is best practice to backup important files in case something happens to your validator node. Please do so for the best experience for yourself, delegators, and our chain.
+It is best practice to backup important files in case something happens to your validator node. Please do so for the best experience for yourself, delegators, and our chain. Do this with the relevant validator files.
