@@ -5,7 +5,7 @@ package types
 
 import (
 	fmt "fmt"
-	github_com_cosmos_cosmos_sdk_types "github.com/cosmos/cosmos-sdk/types"
+	cosmath "cosmossdk.io/math"
 	_ "github.com/cosmos/gogoproto/gogoproto"
 	proto "github.com/cosmos/gogoproto/proto"
 	io "io"
@@ -27,12 +27,12 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 // Minter represents the minting state.
 type Minter struct {
 	// current annual inflation rate
-	Inflation       github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,1,opt,name=inflation,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"inflation"`
+	Inflation       cosmath.Dec `protobuf:"bytes,1,opt,name=inflation,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"inflation"`
 	Phase           uint64                                 `protobuf:"varint,2,opt,name=phase,proto3" json:"phase,omitempty"`
 	StartPhaseBlock uint64                                 `protobuf:"varint,3,opt,name=start_phase_block,json=startPhaseBlock,proto3" json:"start_phase_block,omitempty" yaml:"start_phase_block"`
 	// current annual expected provisions
-	AnnualProvisions github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,4,opt,name=annual_provisions,json=annualProvisions,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"annual_provisions" yaml:"annual_provisions"`
-	TargetSupply     github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,5,opt,name=target_supply,json=targetSupply,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"target_supply" yaml:"target_supply"`
+	AnnualProvisions cosmath.Dec `protobuf:"bytes,4,opt,name=annual_provisions,json=annualProvisions,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"annual_provisions" yaml:"annual_provisions"`
+	TargetSupply     cosmath.Int `protobuf:"bytes,5,opt,name=target_supply,json=targetSupply,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"target_supply" yaml:"target_supply"`
 }
 
 func (m *Minter) Reset()         { *m = Minter{} }

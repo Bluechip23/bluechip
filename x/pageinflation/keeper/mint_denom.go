@@ -1,8 +1,8 @@
 package keeper
 
 import (
+	"cosmossdk.io/store/prefix"
 	"github.com/BlueChip23/bluechip/x/pageinflation/types"
-	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 

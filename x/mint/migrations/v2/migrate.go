@@ -1,6 +1,8 @@
 package v2
 
 import (
+	"cosmossdk.io/math"
+	store "cosmossdk.io/store/types"
 	"github.com/BlueChip23/bluechip/x/mint/types"
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -14,7 +16,7 @@ const (
 // version 2. Specifically, it take calculate target supply for the current phase
 func Migrate(
 	ctx sdk.Context,
-	store sdk.KVStore,
+	store store.KVStore,
 	cdc codec.BinaryCodec,
 ) error {
 
@@ -28,7 +30,10 @@ func Migrate(
 	cdc.MustUnmarshal(b, &minter)
 
 	// Calculate target supply
-	minter.TargetSupply = minter.AnnualProvisions.Add(minter.AnnualProvisions.Quo(minter.Inflation)).TruncateInt()
+	quo, _ := minter.AnnualProvisions.Quo(minter.Inflation)
+	res, _ := minter.AnnualProvisions.Add(quo)
+	intVal, _ := res.Int64()
+	minter.TargetSupply = math.NewInt(intVal)
 
 	// Save new minter
 	bz := cdc.MustMarshal(&minter)

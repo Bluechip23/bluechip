@@ -4,7 +4,6 @@ import (
 	"testing"
 
 	abcitypes "github.com/cometbft/cometbft/abci/types"
-	tmproto "github.com/cometbft/cometbft/proto/tendermint/types"
 	"github.com/stretchr/testify/require"
 
 	bluechipapp "github.com/BlueChip23/bluechip/app"
@@ -14,10 +13,10 @@ import (
 
 func TestItCreatesModuleAccountOnInitBlock(t *testing.T) {
 	app := bluechipapp.Setup(false)
-	ctx := app.BaseApp.NewContext(false, tmproto.Header{})
+	ctx := app.BaseApp.NewContext(false)
 
 	app.InitChain(
-		abcitypes.RequestInitChain{
+		&abcitypes.RequestInitChain{
 			AppStateBytes: []byte("{}"),
 			ChainId:       "test-chain-id",
 		},

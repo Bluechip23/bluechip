@@ -1,7 +1,7 @@
 package app
 
 import (
-	wasmkeeper "github.com/CosmWasm/wasmd/x/wasm/keeper"
+	wasmtypes "github.com/CosmWasm/wasmd/x/wasm/types"
 )
 
 const (
@@ -12,14 +12,14 @@ const (
 )
 
 // BluechipGasRegisterConfig is defaults plus a custom compile amount
-func BluechipGasRegisterConfig() wasmkeeper.WasmGasRegisterConfig {
-	gasConfig := wasmkeeper.DefaultGasRegisterConfig()
+func BluechipGasRegisterConfig() wasmtypes.WasmGasRegisterConfig {
+	gasConfig := wasmtypes.DefaultGasRegisterConfig()
 	gasConfig.InstanceCost = DefaultBluechipInstanceCost
 	gasConfig.CompileCost = DefaultBluechipCompileCost
 
 	return gasConfig
 }
 
-func NewBluechipWasmGasRegister() wasmkeeper.WasmGasRegister {
-	return wasmkeeper.NewWasmGasRegister(BluechipGasRegisterConfig())
+func NewBluechipWasmGasRegister() wasmtypes.WasmGasRegister {
+	return wasmtypes.NewWasmGasRegister(BluechipGasRegisterConfig())
 }

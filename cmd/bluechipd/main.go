@@ -5,7 +5,6 @@ import (
 	"os"
 
 	"github.com/BlueChip23/bluechip/app"
-	"github.com/cosmos/cosmos-sdk/server"
 	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"
 	"github.com/spf13/cobra"
 )
@@ -26,9 +25,9 @@ func main() {
 
 	if err := svrcmd.Execute(rootCmd, "", app.DefaultNodeHome); err != nil {
 		switch e := err.(type) {
-		case server.ErrorCode:
-			os.Exit(e.Code)
+		//TODO: ERROR code went away
 		default:
+			fmt.Printf("Unable to execute command %v", e.Error())
 			os.Exit(1)
 		}
 	}

@@ -6,10 +6,10 @@ import (
 
 	"github.com/stretchr/testify/require"
 
+	"cosmossdk.io/math"
 	"github.com/BlueChip23/bluechip/app"
 	"github.com/BlueChip23/bluechip/x/mint/simulation"
 	"github.com/BlueChip23/bluechip/x/mint/types"
-	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/kv"
 )
 
@@ -17,7 +17,7 @@ func TestDecodeStore(t *testing.T) {
 	cdc := app.MakeEncodingConfig().Marshaler
 	dec := simulation.NewDecodeStore(cdc)
 
-	minter := types.NewMinter(sdk.OneDec(), sdk.NewDec(15), 1, 1, sdk.NewInt(1))
+	minter := types.NewMinter(math.NewDecFromInt64(math.OneInt().Int64()), math.NewDecFromInt64(15), 1, 1, math.OneInt())
 
 	kvPairs := kv.Pairs{
 		Pairs: []kv.Pair{

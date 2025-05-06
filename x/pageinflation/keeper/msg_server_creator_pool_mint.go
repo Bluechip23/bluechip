@@ -4,6 +4,7 @@ import (
 	"context"
 	"math"
 
+	cosmath "cosmossdk.io/math"
 	"github.com/BlueChip23/bluechip/x/pageinflation/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
@@ -39,8 +40,8 @@ mintedPool := storeMintedPool.Value
 numerator := float64(5)*math.Pow(float64(mintedPool), float64(2)) + float64(mintedPool)
 tokenSupplySinceCreatorOne := float64(currentBlock) - float64(startBlock)  // Convert to float64 for operations
 denominator := tokenSupplySinceCreatorOne + 333*float64(mintedPool)
-mintedAmount := sdk.NewDec(int64(500000000 - uint64(numerator*1000000/denominator)))  // Convert back to uint64
-mintedCoin := sdk.NewCoin(mintDenom, mintedAmount.TruncateInt())
+mintedAmount := cosmath.NewInt(int64(500000000 - uint64(numerator*1000000/denominator)))  // Convert back to uint64
+mintedCoin := sdk.NewCoin(mintDenom, mintedAmount) // REMOVED A TRUNCATE INT HERE
 coins := sdk.NewCoins(mintedCoin)
 
 

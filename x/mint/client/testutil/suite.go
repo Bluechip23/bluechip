@@ -10,10 +10,10 @@ import (
 	"github.com/BlueChip23/bluechip/x/mint/client/cli"
 	minttypes "github.com/BlueChip23/bluechip/x/mint/types"
 
+	"cosmossdk.io/math"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	clitestutil "github.com/cosmos/cosmos-sdk/testutil/cli"
 	"github.com/cosmos/cosmos-sdk/testutil/network"
-	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
 type IntegrationTestSuite struct {
@@ -35,7 +35,7 @@ func (s *IntegrationTestSuite) SetupSuite() {
 	var mintData minttypes.GenesisState
 	s.Require().NoError(s.cfg.Codec.UnmarshalJSON(genesisState[minttypes.ModuleName], &mintData))
 
-	inflation := sdk.MustNewDecFromStr("1.0")
+	inflation, _ := math.NewDecFromString("1.0")
 	mintData.Minter.Inflation = inflation
 
 	mintDataBz, err := s.cfg.Codec.MarshalJSON(&mintData)

@@ -4,8 +4,6 @@ import (
 	"encoding/json"
 	"log"
 
-	tmproto "github.com/cometbft/cometbft/proto/tendermint/types"
-
 	servertypes "github.com/cosmos/cosmos-sdk/server/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	slashingtypes "github.com/cosmos/cosmos-sdk/x/slashing/types"
@@ -19,7 +17,7 @@ func (app *App) ExportAppStateAndValidators(
 	forZeroHeight bool, jailAllowedAddrs []string, modulesToExport []string,
 ) (servertypes.ExportedApp, error) {
 	// as if they could withdraw from the start of the next block
-	ctx := app.NewContext(true, tmproto.Header{Height: app.LastBlockHeight()})
+	ctx := app.NewContext(true)
 
 	// We export at last height + 1, because that's the height at which
 	// Tendermint will start InitChain.
@@ -29,7 +27,7 @@ func (app *App) ExportAppStateAndValidators(
 		app.prepForZeroHeightGenesis(ctx, jailAllowedAddrs)
 	}
 
-	genState := app.mm.ExportGenesisForModules(ctx, app.appCodec, modulesToExport)
+	genState, err := app.mm.ExportGenesisForModules(ctx, app.appCodec, modulesToExport)
 	appState, err := json.MarshalIndent(genState, "", "  ")
 	if err != nil {
 		return servertypes.ExportedApp{}, err
@@ -49,11 +47,12 @@ func (app *App) ExportAppStateAndValidators(
 //
 //	in favour of export at a block height
 func (app *App) prepForZeroHeightGenesis(ctx sdk.Context, jailAllowedAddrs []string) {
-	applyAllowedAddrs := false
+	// TODO: Commented out since it is unused but it will come back
+	//applyAllowedAddrs := false
 
 	// check if there is a allowed address list
 	if len(jailAllowedAddrs) > 0 {
-		applyAllowedAddrs = true
+	//	applyAllowedAddrs = true
 	}
 
 	allowedAddrsMap := make(map[string]bool)
@@ -66,14 +65,11 @@ func (app *App) prepForZeroHeightGenesis(ctx sdk.Context, jailAllowedAddrs []str
 		allowedAddrsMap[addr] = true
 	}
 
-	/* Just to be safe, assert the invariants on current state. */
-	app.CrisisKeeper.AssertInvariants(ctx)
-
 	/* Handle fee distribution state. */
 
 	// withdraw all validator commission
 	app.StakingKeeper.IterateValidators(ctx, func(_ int64, val stakingtypes.ValidatorI) (stop bool) {
-		_, err := app.DistrKeeper.WithdrawValidatorCommission(ctx, val.GetOperator())
+		_, err := app.DistrKeeper.WithdrawValidatorCommission(ctx, []byte(val.GetOperator()))
 		if err != nil {
 			panic(err)
 		}
@@ -81,9 +77,9 @@ func (app *App) prepForZeroHeightGenesis(ctx sdk.Context, jailAllowedAddrs []str
 	})
 
 	// withdraw all delegator rewards
-	dels := app.StakingKeeper.GetAllDelegations(ctx)
+	dels, _ := app.StakingKeeper.GetAllDelegations(ctx)
 	for _, delegation := range dels {
-		_, err := app.DistrKeeper.WithdrawDelegationRewards(ctx, delegation.GetDelegatorAddr(), delegation.GetValidatorAddr())
+		_, err := app.DistrKeeper.WithdrawDelegationRewards(ctx, []byte(delegation.GetDelegatorAddr()), []byte(delegation.GetValidatorAddr()))
 		if err != nil {
 			panic(err)
 		}
@@ -102,19 +98,20 @@ func (app *App) prepForZeroHeightGenesis(ctx sdk.Context, jailAllowedAddrs []str
 	// reinitialize all validators
 	app.StakingKeeper.IterateValidators(ctx, func(_ int64, val stakingtypes.ValidatorI) (stop bool) {
 		// donate any unwithdrawn outstanding reward fraction tokens to the community pool
-		scraps := app.DistrKeeper.GetValidatorOutstandingRewardsCoins(ctx, val.GetOperator())
-		feePool := app.DistrKeeper.GetFeePool(ctx)
-		feePool.CommunityPool = feePool.CommunityPool.Add(scraps...)
-		app.DistrKeeper.SetFeePool(ctx, feePool)
+		// TODO: FIND OUT WHY FEE POOL DOES NOT EXIST
+		// scraps, _ := app.DistrKeeper.GetValidatorOutstandingRewardsCoins(ctx, []byte(val.GetOperator()))
+		// feePool := app.DistrKeeper.GetFeePool(ctx)
+		// feePool.CommunityPool = feePool.CommunityPool.Add(scraps...)
+		// app.DistrKeeper.SetFeePool(ctx, feePool)
 
-		app.DistrKeeper.Hooks().AfterValidatorCreated(ctx, val.GetOperator())
+		app.DistrKeeper.Hooks().AfterValidatorCreated(ctx, []byte(val.GetOperator()))
 		return false
 	})
 
 	// reinitialize all delegations
 	for _, del := range dels {
-		app.DistrKeeper.Hooks().BeforeDelegationCreated(ctx, del.GetDelegatorAddr(), del.GetValidatorAddr())
-		app.DistrKeeper.Hooks().AfterDelegationModified(ctx, del.GetDelegatorAddr(), del.GetValidatorAddr())
+		app.DistrKeeper.Hooks().BeforeDelegationCreated(ctx, []byte(del.GetDelegatorAddr()), []byte(del.GetValidatorAddr()))
+		app.DistrKeeper.Hooks().AfterDelegationModified(ctx, []byte(del.GetDelegatorAddr()), []byte(del.GetValidatorAddr()))
 	}
 
 	// reset context height
@@ -142,30 +139,31 @@ func (app *App) prepForZeroHeightGenesis(ctx sdk.Context, jailAllowedAddrs []str
 
 	// Iterate through validators by power descending, reset bond heights, and
 	// update bond intra-tx counters.
-	store := ctx.KVStore(app.keys[stakingtypes.StoreKey])
-	iter := sdk.KVStoreReversePrefixIterator(store, stakingtypes.ValidatorsKey)
-	counter := int16(0)
+	// TODO: REMOVED KVStoreReversePrefixIterator. FIND OUT WHERE IT GOES
+	//store := ctx.KVStore(app.keys[stakingtypes.StoreKey])
+	//iter := sdk.KVStoreReversePrefixIterator(store, stakingtypes.ValidatorsKey)
+	// counter := int16(0)
 
-	for ; iter.Valid(); iter.Next() {
-		addr := sdk.ValAddress(iter.Key()[1:])
-		validator, found := app.StakingKeeper.GetValidator(ctx, addr)
-		if !found {
-			panic("expected validator, not found")
-		}
+	// for ; iter.Valid(); iter.Next() {
+	// 	addr := sdk.ValAddress(iter.Key()[1:])
+	// 	validator, err := app.StakingKeeper.GetValidator(ctx, addr)
+	// 	if (err != nil) {
+	// 		panic(fmt.Sprintf("expected validator, not found, %v", err.Error()))
+	// 	}
 
-		validator.UnbondingHeight = 0
-		if applyAllowedAddrs && !allowedAddrsMap[addr.String()] {
-			validator.Jailed = true
-		}
+	// 	validator.UnbondingHeight = 0
+	// 	if applyAllowedAddrs && !allowedAddrsMap[addr.String()] {
+	// 		validator.Jailed = true
+	// 	}
 
-		app.StakingKeeper.SetValidator(ctx, validator)
-		counter++
-	}
+	// 	app.StakingKeeper.SetValidator(ctx, validator)
+	// 	counter++
+	// }
 
-	err := iter.Close()
-	if err != nil {
-		panic(err)
-	}
+	// err := iter.Close()
+	// if err != nil {
+	// 	panic(err)
+	// }
 
 	if _, err := app.StakingKeeper.ApplyAndReturnValidatorSetUpdates(ctx); err != nil {
 		panic(err)

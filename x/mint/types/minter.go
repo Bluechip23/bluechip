@@ -3,12 +3,13 @@ package types
 import (
 	"fmt"
 
+	"cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
 // NewMinter returns a new Minter object with the given inflation and annual
 // provisions values.
-func NewMinter(inflation, annualProvisions sdk.Dec, phase, startPhaseBlock uint64, targetSupply sdk.Int) Minter {
+func NewMinter(inflation, annualProvisions math.Dec, phase, startPhaseBlock uint64, targetSupply math.Int) Minter {
 	return Minter{
 		Inflation:        inflation,
 		AnnualProvisions: annualProvisions,
@@ -19,13 +20,13 @@ func NewMinter(inflation, annualProvisions sdk.Dec, phase, startPhaseBlock uint6
 }
 
 // InitialMinter returns an initial Minter object with a given inflation value.
-func InitialMinter(inflation sdk.Dec) Minter {
+func InitialMinter(inflation math.Dec) Minter {
 	return NewMinter(
 		inflation,
-		sdk.NewDec(0),
+		math.NewDecFromInt64(0),
 		0,
 		0,
-		sdk.NewInt(0),
+		math.NewInt(0),
 	)
 }
 
@@ -33,7 +34,8 @@ func InitialMinter(inflation sdk.Dec) Minter {
 // which uses an inflation rate of 13%.
 func DefaultInitialMinter() Minter {
 	return InitialMinter(
-		sdk.NewDecWithPrec(13, 2),
+		// TODO: MIGHT NEED PRECISION LegacyNewDecFromBigIntWithPrec
+		math.NewDecFromInt64(13),
 	)
 }
 
@@ -47,8 +49,8 @@ func ValidateMinter(minter Minter) error {
 }
 
 // PhaseInflationRate returns the inflation rate by phase.
-func (m Minter) InflationcalculationFn(phase uint64) sdk.Dec {
-	InflationAmt := sdk.NewDec(Inflation_Amount_Per_Year)
+func (m Minter) InflationcalculationFn(phase uint64) math.Dec {
+	InflationAmt := math.NewDecFromInt64(Inflation_Amount_Per_Year)
 
 	return InflationAmt
 }
@@ -70,19 +72,20 @@ func (m Minter) NextPhase(params Params, currentBlock uint64) uint64 {
 
 // NextAnnualProvisions returns the annual provisions based on current total
 // supply and inflation rate.
-func (m Minter) NextAnnualProvisions(_ Params, totalSupply sdk.Int) sdk.Dec {
-	return m.Inflation.MulInt(totalSupply)
+func (m Minter) NextAnnualProvisions(_ Params, totalSupply math.Int) (math.Dec, error) {
+	return m.Inflation.Mul(math.NewDecFromInt64(totalSupply.Int64()))
 }
 
 // BlockProvision returns the provisions for a block based on the annual
 // provisions rate.
-func (m Minter) BlockProvision(params Params, totalSupply sdk.Int) sdk.Coin {
-	provisionAmt := sdk.NewDec(1000000)
+func (m Minter) BlockProvision(params Params, totalSupply math.Int) sdk.Coin {
+	provisionAmt := math.NewDecFromInt64(1000000)
 	// Because of rounding, we might mint too many tokens in this phase, let's limit it
-	futureSupply := totalSupply.Add(provisionAmt.TruncateInt())
+	x, _ := provisionAmt.Int64()
+	futureSupply := totalSupply.Add(math.NewInt(x))
 	if futureSupply.GT(m.TargetSupply) {
 		return sdk.NewCoin(params.MintDenom, m.TargetSupply.Sub(totalSupply))
 	}
 
-	return sdk.NewCoin(params.MintDenom, provisionAmt.TruncateInt())
+	return sdk.NewCoin(params.MintDenom, (math.NewInt(x)))
 }

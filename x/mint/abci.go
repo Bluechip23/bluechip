@@ -3,6 +3,7 @@ package mint
 import (
 	"time"
 
+	"cosmossdk.io/math"
 	"github.com/BlueChip23/bluechip/x/mint/keeper"
 	"github.com/BlueChip23/bluechip/x/mint/types"
 	"github.com/cosmos/cosmos-sdk/telemetry"
@@ -37,9 +38,12 @@ func BeginBlocker(ctx sdk.Context, k keeper.Keeper) {
 		//minter.Inflation = newInflation
 		minter.Phase = nextPhase
 		minter.StartPhaseBlock = currentBlock
-		minter.Inflation = newInflation.Mul(sdk.NewDec(100)).Quo(totalSupply.ToLegacyDec())
+		v, _ := newInflation.Mul(math.NewDecFromInt64(100))
+		z, _ := v.Quo(math.NewDecFromInt64(totalSupply.Int64()))
+		minter.Inflation = z
 		minter.AnnualProvisions = newInflation
-		minter.TargetSupply = totalSupply.Add(minter.AnnualProvisions.TruncateInt())
+		annualProvisions, _ := minter.AnnualProvisions.Int64()
+		minter.TargetSupply = totalSupply.Add(math.NewInt(annualProvisions))
 		k.SetMinter(ctx, minter)
 
 		// inflation phase end

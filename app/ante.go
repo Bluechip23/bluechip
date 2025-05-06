@@ -3,20 +3,19 @@ package app
 import (
 	"math"
 
+	corestoretypes "cosmossdk.io/core/store"
+	errorsmod "cosmossdk.io/errors"
+	sdkmath "cosmossdk.io/math"
+	wasmkeeper "github.com/CosmWasm/wasmd/x/wasm/keeper"
+	wasmTypes "github.com/CosmWasm/wasmd/x/wasm/types"
 	"github.com/cosmos/cosmos-sdk/codec"
-	storetypes "github.com/cosmos/cosmos-sdk/store/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/cosmos/cosmos-sdk/x/auth/ante"
 	"github.com/cosmos/cosmos-sdk/x/authz"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
-	ibcante "github.com/cosmos/ibc-go/v7/modules/core/ante"
-	ibckeeper "github.com/cosmos/ibc-go/v7/modules/core/keeper"
-
-	errorsmod "cosmossdk.io/errors"
-	sdkmath "cosmossdk.io/math"
-	wasmkeeper "github.com/CosmWasm/wasmd/x/wasm/keeper"
-	wasmTypes "github.com/CosmWasm/wasmd/x/wasm/types"
+	ibcante "github.com/cosmos/ibc-go/v8/modules/core/ante"
+	ibckeeper "github.com/cosmos/ibc-go/v8/modules/core/keeper"
 )
 
 // HandlerOptions extends the SDK's AnteHandler options by requiring the IBC
@@ -25,8 +24,8 @@ type HandlerOptions struct {
 	ante.HandlerOptions
 
 	IBCKeeper         *ibckeeper.Keeper
-	TxCounterStoreKey storetypes.StoreKey
-	WasmConfig        wasmTypes.WasmConfig
+	TxCounterStoreKey corestoretypes.KVStoreService
+	WasmConfig        wasmTypes.NodeConfig
 	Cdc               codec.BinaryCodec
 }
 
@@ -43,7 +42,7 @@ func (min MinCommissionDecorator) AnteHandle(
 	simulate bool, next sdk.AnteHandler,
 ) (newCtx sdk.Context, err error) {
 	msgs := tx.GetMsgs()
-	minCommissionRate := sdk.NewDecWithPrec(5, 2)
+	minCommissionRate := sdkmath.LegacyNewDecWithPrec(5, 2)
 
 	validMsg := func(m sdk.Msg) error {
 		switch msg := m.(type) {
@@ -52,7 +51,7 @@ func (min MinCommissionDecorator) AnteHandle(
 			// commission set below 5%
 			c := msg.Commission
 			if c.Rate.LT(minCommissionRate) {
-				return sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "commission can't be lower than 5%")
+				return errorsmod.Wrap(sdkerrors.ErrUnauthorized, "commission can't be lower than 5%")
 			}
 		case *stakingtypes.MsgEditValidator:
 			// if commission rate is nil, it means only
@@ -61,7 +60,7 @@ func (min MinCommissionDecorator) AnteHandle(
 				break
 			}
 			if msg.CommissionRate.LT(minCommissionRate) {
-				return sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "commission can't be lower than 5%")
+				return errorsmod.Wrap(sdkerrors.ErrUnauthorized, "commission can't be lower than 5%")
 			}
 		}
 
@@ -73,7 +72,7 @@ func (min MinCommissionDecorator) AnteHandle(
 			var innerMsg sdk.Msg
 			err := min.cdc.UnpackAny(v, &innerMsg)
 			if err != nil {
-				return sdkerrors.Wrapf(sdkerrors.ErrUnauthorized, "cannot unmarshal authz exec msgs")
+				return errorsmod.Wrapf(sdkerrors.ErrUnauthorized, "cannot unmarshal authz exec msgs")
 			}
 
 			err = validMsg(innerMsg)
@@ -165,15 +164,15 @@ func getTxPriority(fee sdk.Coins, gas int64) int64 {
 // signer.
 func NewAnteHandler(options HandlerOptions) (sdk.AnteHandler, error) {
 	if options.AccountKeeper == nil {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrLogic, "account keeper is required for ante builder")
+		return nil, errorsmod.Wrap(sdkerrors.ErrLogic, "account keeper is required for ante builder")
 	}
 
 	if options.BankKeeper == nil {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrLogic, "bank keeper is required for ante builder")
+		return nil, errorsmod.Wrap(sdkerrors.ErrLogic, "bank keeper is required for ante builder")
 	}
 
 	if options.SignModeHandler == nil {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrLogic, "sign mode handler is required for ante builder")
+		return nil, errorsmod.Wrap(sdkerrors.ErrLogic, "sign mode handler is required for ante builder")
 	}
 
 	sigGasConsumer := options.SigGasConsumer

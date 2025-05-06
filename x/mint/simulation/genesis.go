@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"math/rand"
 
+	"cosmossdk.io/math"
 	"github.com/BlueChip23/bluechip/x/mint/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
@@ -18,21 +19,21 @@ const (
 )
 
 // GenInflation randomized Inflation
-func GenInflation(r *rand.Rand) sdk.Dec {
-	return sdk.NewDecWithPrec(int64(r.Intn(99)), 2)
+func GenInflation(r *rand.Rand) math.Dec {
+	return math.NewDecFromInt64(int64(r.Intn(99)))
 }
 
 // GenBlocksPerYear randomized BlocksPerYear
-func GenBlocksPerYear(r *rand.Rand) sdk.Dec {
-	return sdk.NewDec(5256000)
+func GenBlocksPerYear(r *rand.Rand) math.Dec {
+	return math.NewDecFromInt64(5256000)
 }
 
 // RandomizedGenState generates a random GenesisState for mint
 func RandomizedGenState(simState *module.SimulationState) {
 	// minter
-	var inflation sdk.Dec
+	var inflation math.Dec
 	simState.AppParams.GetOrGenerate(
-		simState.Cdc, Inflation, &inflation, simState.Rand,
+		Inflation, &inflation, simState.Rand,
 		func(r *rand.Rand) { inflation = GenInflation(r) },
 	)
 

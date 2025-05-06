@@ -3,9 +3,9 @@ package app
 import (
 	"encoding/json"
 
+	"cosmossdk.io/log"
 	dbm "github.com/cometbft/cometbft-db"
 	abci "github.com/cometbft/cometbft/abci/types"
-	"github.com/cometbft/cometbft/libs/log"
 
 	simtestutil "github.com/cosmos/cosmos-sdk/testutil/sims"
 )
@@ -21,7 +21,7 @@ func Setup(isCheckTx bool) *App {
 
 		// Initialize the chain
 		app.InitChain(
-			abci.RequestInitChain{
+			&abci.RequestInitChain{
 				Validators:      []abci.ValidatorUpdate{},
 				ConsensusParams: simtestutil.DefaultConsensusParams,
 				AppStateBytes:   stateBytes,
